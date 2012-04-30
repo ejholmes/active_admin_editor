@@ -1,0 +1,7 @@
+.active_admin_editor {
+    width: 76%;
+    float: left;
+}
+.active_admin_editor textarea {
+    width: 100%;
+}
