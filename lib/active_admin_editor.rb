@@ -1,2 +1,1 @@
-module ActiveAdminEditor
-end
+require 'active_admin/editor'
