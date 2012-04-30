@@ -1,0 +1,31 @@
+# Active Admin Editor
+
+This is a wysiyg html editor for the [Active Admin](http://activeadmin.info/)
+interface using [wysihtml5](https://github.com/xing/wysihtml5).
+
+## Installation
+
+```ruby
+# Gemfile
+
+gem 'active_admin_editor'
+```
+
+## Usage
+This gem proves you with a custom formtastic input called `:html_editor` to build out an html editor.
+All you have to do is specify the `:as` option for your inputs.
+
+**Example**
+
+```ruby
+ActiveAdmin.register Page do
+  form do |f|
+    f.inputs do
+      f.input :title
+      f.input :content, as: :html_editor
+    end
+
+    f.buttons
+  end
+end
+```
