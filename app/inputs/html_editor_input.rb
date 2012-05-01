@@ -60,6 +60,7 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
     html << toolbar.html_safe
     html << builder.text_area(method, input_html_options)
     html << '</div>'
+    html << '<div style="clear: both"></div>'
     input_wrapping do
       label_html << html.html_safe
     end

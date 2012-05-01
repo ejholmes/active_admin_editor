@@ -15,8 +15,21 @@ gem 'active_admin_editor'
 
 Then add the following stylesheet to your application manifest:
 
-```
+```ruby
+# app/assets/stylesheets/application.css
 //= require active_admin/editor/wysiwyg
+```
+
+And the following to your active\_admin.css.scss and active\_admin.js:
+
+```ruby
+# app/assets/javascripts/active_admin.js
+//= require active_admin/editor
+```
+
+```ruby
+# app/assets/javascripts/active_admin.css.scss
+@import 'active_admin/editor';
 ```
 
 ## Usage
