@@ -24,16 +24,19 @@
           padding: 4px 6px;
           margin: 0 2px 2px 0;
           border: 1px solid #C9D0D6;
-
           border-radius: 4px;
 
           &.wysihtml5-command-active {
-            background: #ccc;
+            @include gradient(#eee, #f9f9f9);
           }
         }
 
         &.wysihtml5-commands-disabled [data-wysihtml5-command] {
           opacity: 0.5;
+        }
+
+        &.wysihtml5-commands-disabled [data-wysihtml5-action="change_view"] {
+          @include gradient(#eee, #f9f9f9);
         }
 
         [data-wysihtml5-command="bold"] {
@@ -42,6 +45,10 @@
 
         [data-wysihtml5-command="italic"] {
           font-style: italic;
+        }
+
+        [data-wysihtml5-command="createLink"] span {
+          border-bottom: 1px solid #38678B;
         }
 
         /* Dialog Window */
