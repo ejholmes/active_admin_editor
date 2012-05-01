@@ -78,6 +78,14 @@
     background-color: #ccc;
 }
 
+.active_admin_editor .active_admin_editor_toolbar .button.quicksave {
+    float: right;
+    margin-top: -5px;
+    margin-right: -20px;
+    position: relative;
+    top: -5px;
+}
+
 /* wysihtml5 dialogs */
 .active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-dialog] {
     position: absolute;

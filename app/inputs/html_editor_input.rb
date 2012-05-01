@@ -13,6 +13,7 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
       #{%Q{<a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">h1</a>} if input_html_options[:commands][:h1]}
       #{%Q{<a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">h2</a>} if input_html_options[:commands][:h2]}
       #{%Q{<a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3">h3</a>} if input_html_options[:commands][:h3]}
+      #{%Q{<a class="button quicksave" href="#">Save</a>} if input_html_options[:quicksave]}
 
       <div data-wysihtml5-dialog="createLink" style="display: none">
         <label>
@@ -50,6 +51,7 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
 
   def input_html_options
     {
+      quicksave: true,
       commands: {
         bold: true,
         italic: true,
