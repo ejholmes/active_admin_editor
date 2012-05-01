@@ -30,6 +30,8 @@
     position: relative;
     top: -4px;
     background: url('editor/icons.png') top left no-repeat;
+    color: #000;
+    text-decoration: none;
 }
 
 .active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-command="bold"] {

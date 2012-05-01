@@ -3,12 +3,12 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
     <<-HTML
     <div id="#{input_html_options[:id]}-toolbar" class="active_admin_editor_toolbar">
       <a data-wysihtml5-action="change_view">Source</a>
-      #{%Q{<a data-wysihtml5-command="bold" title="CTRL+B"></a>} if input_html_options[:commands][:bold]}
-      #{%Q{<a data-wysihtml5-command="italic" title="CTRL+I"></a>} if input_html_options[:commands][:italic]}
-      #{%Q{<a data-wysihtml5-command="createLink"></a>} if input_html_options[:commands][:link]}
-      #{%Q{<a data-wysihtml5-command="insertImage"></a>} if input_html_options[:commands][:image]}
-      #{%Q{<a data-wysihtml5-command="insertUnorderedList"></a>} if input_html_options[:commands][:ul]}
-      #{%Q{<a data-wysihtml5-command="insertOrderedList"></a>} if input_html_options[:commands][:li]}
+      #{%Q{<a data-wysihtml5-command="bold" title="Bold"></a>} if input_html_options[:commands][:bold]}
+      #{%Q{<a data-wysihtml5-command="italic" title="Italic"></a>} if input_html_options[:commands][:italic]}
+      #{%Q{<a data-wysihtml5-command="createLink" title="Link"></a>} if input_html_options[:commands][:link]}
+      #{%Q{<a data-wysihtml5-command="insertImage" title="Image"></a>} if input_html_options[:commands][:image]}
+      #{%Q{<a data-wysihtml5-command="insertUnorderedList" title="Unordered list"></a>} if input_html_options[:commands][:ul]}
+      #{%Q{<a data-wysihtml5-command="insertOrderedList" title="Ordered list"></a>} if input_html_options[:commands][:li]}
       <div class="separator"></div>
       #{%Q{<a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">h1</a>} if input_html_options[:commands][:h1]}
       #{%Q{<a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">h2</a>} if input_html_options[:commands][:h2]}
