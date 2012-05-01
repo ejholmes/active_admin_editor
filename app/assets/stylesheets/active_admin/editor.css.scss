@@ -1,0 +1,101 @@
+@import 'active_admin/mixins';
+
+.active_admin_editor {
+    width: 76%;
+    float: left;
+
+    textarea {
+        width: 100%;
+        font-family: Georgia;
+        font-size: 1.3em;
+        height: 700px;
+        line-height: 1.5em;
+    }
+
+    .active_admin_editor_toolbar {
+        position: relative;
+        margin-bottom: 8px;
+
+        /* Formatting Buttons */
+        [data-wysihtml5-command],
+        [data-wysihtml5-action="change_view"] {
+          text-decoration: none;
+          background: #fff;
+          padding: 4px 6px;
+          margin: 0 2px 2px 0;
+          border: 1px solid #C9D0D6;
+
+          border-radius: 4px;
+
+          &.wysihtml5-command-active {
+            background: #ccc;
+          }
+        }
+
+        &.wysihtml5-commands-disabled [data-wysihtml5-command] {
+          opacity: 0.5;
+        }
+
+        [data-wysihtml5-command="bold"] {
+          font-weight: bold;
+        }
+
+        [data-wysihtml5-command="italic"] {
+          font-style: italic;
+        }
+
+        /* Dialog Window */
+        [data-wysihtml5-dialog] {
+            position: absolute;
+            top: 35px;
+            left: 10px;
+            width: 600px;
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #c9d0d6;
+
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+
+            -moz-box-shadow: 0 0 5px #ccc;
+            -webkit-box-shadow: 0 0 5px #ccc;
+            box-shadow: 0 0 5px #ccc;
+
+            label {
+                clear: both;
+                display: block;
+                margin: 10px 0;
+            }
+
+            input {
+                width: 400px;
+                border: 1px solid #c9d0d6;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                font-size: 0.95em;
+                font-family: Helvetica, Arial, sans-serif;
+                outline: none;
+                padding: 8px 10px 7px;
+            }
+
+            .action-group {
+                padding-top: 20px;
+                clear: both;
+            }
+
+            [data-wysihtml5-dialog-action] {
+                cursor: pointer;
+            }
+        }
+
+        .button.quicksave {
+            float: right;
+            margin-top: -5px;
+            margin-right: -20px;
+            position: relative;
+            top: -5px;
+        }
+    }
+}
