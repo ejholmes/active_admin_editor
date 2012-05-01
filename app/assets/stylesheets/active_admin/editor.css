@@ -4,4 +4,122 @@
 }
 .active_admin_editor textarea {
     width: 100%;
+    font-family: Georgia;
+    font-size: 1.3em;
+    height: 700px;
+}
+
+/* wysihtml5 styles */
+.active_admin_editor .active_admin_editor_toolbar {
+    position: relative;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-command] {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background: url('editor/icons.png') top left no-repeat;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-action="change_view"] {
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    padding-left: 20px;
+    margin-right: 10px;
+    position: relative;
+    top: -4px;
+    background: url('editor/icons.png') top left no-repeat;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-command="bold"] {
+    background-position: 0 -304px;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-command="italic"] {
+    background-position: 0 -320px;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-command="createLink"] {
+    background-position: 0 -528px;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-command="insertImage"] {
+    background-position: 0 -576px;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-command="insertUnorderedList"] {
+    background-position: 0 -416px;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-command="insertOrderedList"] {
+    background-position: 0 -400px;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-command="formatBlock"] {
+    background: none;
+    width: auto;
+    padding-right: 2px;
+    position: relative;
+    top: -3px;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: Georgia;
+    color: #000;
+}
+
+.active_admin_editor .active_admin_editor_toolbar .separator {
+    display: inline-block;
+    height: 1px;
+    width: 10px;
+}
+
+.active_admin_editor .active_admin_editor_toolbar .wysihtml5-command-active {
+    background-color: #ccc;
+}
+
+/* wysihtml5 dialogs */
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-dialog] {
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    width: 600px;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #c9d0d6;
+
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+
+    -moz-box-shadow: 0 0 5px #ccc;
+    -webkit-box-shadow: 0 0 5px #ccc;
+    box-shadow: 0 0 5px #ccc;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-dialog] label {
+    clear: both;
+    display: block;
+    margin: 10px 0;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-dialog] input {
+    width: 400px;
+    border: 1px solid #c9d0d6;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 0.95em;
+    font-family: Helvetica, Arial, sans-serif;
+    outline: none;
+    padding: 8px 10px 7px;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-dialog] .action-group {
+    padding-top: 20px;
+    clear: both;
+}
+
+.active_admin_editor .active_admin_editor_toolbar [data-wysihtml5-dialog-action] {
+    cursor: pointer;
 }

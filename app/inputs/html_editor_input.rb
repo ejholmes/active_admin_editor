@@ -2,25 +2,46 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
   def toolbar
     <<-HTML
     <div id="#{input_html_options[:id]}-toolbar" class="active_admin_editor_toolbar">
-      <a data-wysihtml5-command="bold" title="CTRL+B">bold</a>
-      <a data-wysihtml5-command="italic" title="CTRL+I">italic</a> |
-      <a data-wysihtml5-command="createLink">insert link</a> |
-      <a data-wysihtml5-command="insertLibraryImage">insert image</a> |
-      <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">h1</a> |
-      <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">h2</a> |
-      <a data-wysihtml5-command="insertUnorderedList">insertUnorderedList</a> |
-      <a data-wysihtml5-command="insertOrderedList">insertOrderedList</a>
-      <a data-wysihtml5-action="change_view">switch to html view</a>
+      <a data-wysihtml5-action="change_view">Source</a>
+      #{%Q{<a data-wysihtml5-command="bold" title="CTRL+B"></a>} if input_html_options[:commands][:bold]}
+      #{%Q{<a data-wysihtml5-command="italic" title="CTRL+I"></a>} if input_html_options[:commands][:italic]}
+      #{%Q{<a data-wysihtml5-command="createLink"></a>} if input_html_options[:commands][:link]}
+      #{%Q{<a data-wysihtml5-command="insertImage"></a>} if input_html_options[:commands][:image]}
+      #{%Q{<a data-wysihtml5-command="insertUnorderedList"></a>} if input_html_options[:commands][:ul]}
+      #{%Q{<a data-wysihtml5-command="insertOrderedList"></a>} if input_html_options[:commands][:li]}
+      <div class="separator"></div>
+      #{%Q{<a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">h1</a>} if input_html_options[:commands][:h1]}
+      #{%Q{<a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">h2</a>} if input_html_options[:commands][:h2]}
+      #{%Q{<a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3">h3</a>} if input_html_options[:commands][:h3]}
 
-      <div data-wysihtml5-dialog-container="insertLibraryImage" style="display: none;">
-      </div>
-
-      <div data-wysihtml5-dialog="createLink" style="display: none;">
+      <div data-wysihtml5-dialog="createLink" style="display: none">
         <label>
           Link:
           <input data-wysihtml5-dialog-field="href" value="http://">
         </label>
-        <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
+        <div class="action-group">
+          <a data-wysihtml5-dialog-action="save" class="button">OK</a>
+          <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+        </div>
+      </div>
+      
+      <div data-wysihtml5-dialog="insertImage" style="display: none">
+        <label>
+          Image:
+          <input data-wysihtml5-dialog-field="src" value="http://">
+        </label>
+        <label>
+          Align:
+          <select data-wysihtml5-dialog-field="className">
+            <option value="">default</option>
+            <option value="wysiwyg-float-left">left</option>
+            <option value="wysiwyg-float-right">right</option>
+          </select>
+        </label>
+        <div class="action-group">
+          <a data-wysihtml5-dialog-action="save" class="button">OK</a>
+          <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+        </div>
       </div>
       
     </div>
@@ -29,7 +50,18 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
 
   def input_html_options
     {
-      'active-admin-editor' => true
+      commands: {
+        bold: true,
+        italic: true,
+        link: true,
+        image: true,
+        ul: true,
+        li: true,
+
+        h1: true,
+        h2: true,
+        h3: true
+      }
     }.merge(super)
   end
 

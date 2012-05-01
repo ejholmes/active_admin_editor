@@ -11,6 +11,12 @@ interface using [wysihtml5](https://github.com/xing/wysihtml5).
 gem 'active_admin_editor'
 ```
 
+Then add the following stylesheet to your application manifest:
+
+```
+//= require active_admin/editor/wysiwyg
+```
+
 ## Usage
 This gem provides you with a custom formtastic input called `:html_editor` to build out an html editor.
 All you have to do is specify the `:as` option for your inputs.

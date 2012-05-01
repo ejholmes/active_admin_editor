@@ -3,17 +3,20 @@
 
 (function($) {
     $(function(){
-        var active_admin_editor = $('[active-admin-editor=true]')
-        var id = active_admin_editor.attr('id');
+        var active_admin_editor, textarea_id, toolbar_id;
+        active_admin_editor = $('.active_admin_editor');
 
-        var toolbar = active_admin_editor.parent().find('.active_admin_editor_toolbar');
-        var toolbar_id = toolbar.attr('id');
+        if (active_admin_editor.length > 0) {
+            textarea_id         = active_admin_editor.find('textarea').attr('id');
+            toolbar_id          = active_admin_editor.find('.active_admin_editor_toolbar').attr('id');
 
-        var editor = new wysihtml5.Editor(id, {
-            toolbar: toolbar_id,
-            parserRules: wysihtml5ParserRules
-        });
+            var editor = new wysihtml5.Editor(textarea_id, {
+                toolbar: toolbar_id,
+                stylesheets: "/assets/active_admin/editor/wysiwyg",
+                parserRules: wysihtml5ParserRules
+            });
 
-        window.editor = editor;
+            window.editor = editor;
+        }
     });
 })(jQuery);

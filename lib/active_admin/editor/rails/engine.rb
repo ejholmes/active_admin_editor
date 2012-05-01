@@ -7,6 +7,7 @@ module ActiveAdmin
           ActiveAdmin.setup do |config|
             config.register_javascript 'active_admin/editor'
             config.register_stylesheet 'active_admin/editor'
+            config.register_stylesheet 'active_admin/editor/wysiwyg'
           end
         end
       end
