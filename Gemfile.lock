@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    active_admin_editor (0.0.1)
+    active_admin_editor (0.1.0)
       carrierwave
       rails (~> 3.2.3)
 
