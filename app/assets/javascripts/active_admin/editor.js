@@ -13,7 +13,7 @@
 
             var editor = new wysihtml5.Editor(textarea_id, {
                 toolbar: toolbar_id,
-                stylesheets: "/assets/active_admin/editor/wysiwyg",
+                stylesheets: "/assets/wysiwyg.css",
                 parserRules: wysihtml5ParserRules
             });
 
