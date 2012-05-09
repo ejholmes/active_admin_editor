@@ -32,6 +32,12 @@ And the following to your active\_admin.css.scss and active\_admin.js:
 @import 'active_admin/editor';
 ```
 
+And finally install the wysiwyg css file:
+
+```bash
+$ rails g active_admin:editor
+```
+
 ## Usage
 This gem provides you with a custom formtastic input called `:html_editor` to build out an html editor.
 All you have to do is specify the `:as` option for your inputs.

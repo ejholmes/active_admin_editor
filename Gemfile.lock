@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    active_admin_editor (0.1.0)
+    active_admin_editor (0.2.3)
       carrierwave
-      rails (~> 3.2.3)
+      rails (>= 3.0.0)
 
 GEM
   remote: http://rubygems.org/
