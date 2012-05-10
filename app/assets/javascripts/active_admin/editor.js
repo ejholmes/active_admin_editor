@@ -3,52 +3,57 @@
 //= require active_admin/editor/quicksave
 
 (function($) {
-    $(function(){
-        var active_admin_editor, textarea_id, toolbar_id;
-        active_admin_editor = $('.active_admin_editor');
+    $.fn.active_admin_editor = function(options) {
+        return this.each(function() {
+            var active_admin_editor, textarea_id, toolbar_id;
+            active_admin_editor = $(this);
 
-        if (active_admin_editor.length > 0) {
-            textarea_id         = active_admin_editor.find('textarea').attr('id');
-            toolbar_id          = active_admin_editor.find('.active_admin_editor_toolbar').attr('id');
+            /* Setup the editor */
+            if (active_admin_editor.length > 0) {
+                textarea_id         = active_admin_editor.find('textarea').attr('id');
+                toolbar_id          = active_admin_editor.find('.active_admin_editor_toolbar').attr('id');
 
-            var editor = new wysihtml5.Editor(textarea_id, {
-                toolbar: toolbar_id,
-                stylesheets: "/assets/wysiwyg.css",
-                parserRules: wysihtml5ParserRules
-            });
-
-            window.editor = editor;
-        }
-
-        $('.active_admin_editor_toolbar a.insertImage').click(function(e) {
-            container = $(this).closest('.active_admin_editor_toolbar').find('.assets_container');
-            $.getJSON("/admin/assets.json", function(data) {
-                container.html('').hide;
-                $.each(data, function(i, asset) {
-                    container.append($('<div class="asset"><img src=' + asset.storage.thumb.url + ' /></div>'));
+                var editor = new wysihtml5.Editor(textarea_id, {
+                    toolbar: toolbar_id,
+                    stylesheets: "/assets/wysiwyg.css",
+                    parserRules: wysihtml5ParserRules
                 });
-                container.show();
 
-                var populateSrc = function(el) {
-                    container.find('.asset').removeClass('active');
-                    input = $(el).closest('.active_admin_editor_toolbar').
-                        find('[data-wysihtml5-dialog="insertImage"]').
-                        find('input[data-wysihtml5-dialog-field="src"]');
-                    input.val(el.src);
-                    $(el).parent().addClass('active');
-                }
+                editor.on('show:dialog', function(dialog) {
+                    if (dialog.command == 'insertImage') {
+                        container = active_admin_editor.find('.assets_container').html('').hide();
+                        image_input = active_admin_editor.find('[data-wysihtml5-dialog="insertImage"] input[data-wysihtml5-dialog-field="src"]');
 
-                container.find('img').
-                    click(function(e) {
-                        populateSrc(this);
-                    }).
-                    dblclick(function(e) {
-                        populateSrc(this);
-                        // $(this).closest('.active_admin_editor_toolbar').
-                            // find('[data-wysihtml5-dialog="insertImage"] a[data-wysihtml5-dialog-action="save"]').
-                            // click();
-                    });
-            });
+                        if (image_input.val() == 'http://') {
+                            $.getJSON("/admin/assets.json", function(data) {
+                                container.append($('<a class="upload" href="/admin/assets/new">Upload &raquo;</a>'));
+                                $.each(data, function(i, asset) {
+                                    container.append($('<div class="asset"><img data-image-src="' + asset.storage.url + '" src="' + asset.storage.thumb.url + '" /></div>'));
+                                });
+                                container.show();
+
+                                var populateSrc = function(el) {
+                                    container.find('.asset').removeClass('active');
+                                    var domain = el.src.match(/http:\/\/[^/]*/gi);
+                                    image_input.val(domain + $(el).data('image-src'));
+                                    $(el).parent().addClass('active');
+                                }
+
+                                container.find('img').
+                                    click(function(e) {
+                                        populateSrc(this);
+                                    });
+                            });
+                        }
+                    }
+                });
+
+                window.editor = editor;
+            }
         });
+    };
+
+    $(function(){
+        $('.active_admin_editor').active_admin_editor();
     });
 })(jQuery);

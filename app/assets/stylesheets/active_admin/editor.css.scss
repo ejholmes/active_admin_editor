@@ -60,7 +60,7 @@
             left: 10px;
             width: 600px;
             background: #fff;
-            padding: 10px;
+            padding: 20px;
             border: 1px solid #c9d0d6;
 
             -moz-border-radius: 3px;
@@ -106,6 +106,12 @@
                 img {
                   cursor: pointer;
                 }
+              }
+
+              a.upload {
+                display: block;
+                float: right;
+                margin-right: 20px;
               }
             }
 
