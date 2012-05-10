@@ -22,6 +22,7 @@
                 editor.on('show:dialog', function(dialog) {
                     if (dialog.command == 'insertImage') {
                         container = active_admin_editor.find('.assets_container').html('').hide();
+                        save_button = active_admin_editor.find('[data-wysihtml5-dialog="insertImage"] a[data-wysihtml5-dialog-action="save"]');
                         image_input = active_admin_editor.find('[data-wysihtml5-dialog="insertImage"] input[data-wysihtml5-dialog-field="src"]');
 
                         if (image_input.val() == 'http://') {
@@ -42,6 +43,22 @@
                                 container.find('img').
                                     click(function(e) {
                                         populateSrc(this);
+                                    }).
+                                    dblclick(function(e) {
+                                        var fireEvent = function(element, event) {
+                                            if (document.createEvent) {
+                                                // dispatch for firefox + others
+                                                var evt = document.createEvent("HTMLEvents");
+                                                evt.initEvent(event, true, true ); // event type,bubbling,cancelable
+                                                return !element.dispatchEvent(evt);
+                                            } else {
+                                                // dispatch for IE
+                                                var evt = document.createEventObject();
+                                                return element.fireEvent('on'+event, evt)
+                                            }
+                                        }
+
+                                        fireEvent(save_button[0], 'click');
                                     });
                             });
                         }
