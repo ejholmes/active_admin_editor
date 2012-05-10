@@ -19,5 +19,36 @@
 
             window.editor = editor;
         }
+
+        $('.active_admin_editor_toolbar a.insertImage').click(function(e) {
+            container = $(this).closest('.active_admin_editor_toolbar').find('.assets_container');
+            $.getJSON("/admin/assets.json", function(data) {
+                container.html('').hide;
+                $.each(data, function(i, asset) {
+                    container.append($('<div class="asset"><img src=' + asset.storage.thumb.url + ' /></div>'));
+                });
+                container.show();
+
+                var populateSrc = function(el) {
+                    container.find('.asset').removeClass('active');
+                    input = $(el).closest('.active_admin_editor_toolbar').
+                        find('[data-wysihtml5-dialog="insertImage"]').
+                        find('input[data-wysihtml5-dialog-field="src"]');
+                    input.val(el.src);
+                    $(el).parent().addClass('active');
+                }
+
+                container.find('img').
+                    click(function(e) {
+                        populateSrc(this);
+                    }).
+                    dblclick(function(e) {
+                        populateSrc(this);
+                        // $(this).closest('.active_admin_editor_toolbar').
+                            // find('[data-wysihtml5-dialog="insertImage"] a[data-wysihtml5-dialog-action="save"]').
+                            // click();
+                    });
+            });
+        });
     });
 })(jQuery);

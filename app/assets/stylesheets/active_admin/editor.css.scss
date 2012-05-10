@@ -89,6 +89,26 @@
                 padding: 8px 10px 7px;
             }
 
+            .assets_container {
+              clear: both;
+              margin: 10px 0;
+
+              .asset {
+                float: left;
+                margin: 5px;
+                line-height: 0;
+                border: 3px solid #ddd;
+
+                &.active {
+                  border-color: #999;
+                }
+
+                img {
+                  cursor: pointer;
+                }
+              }
+            }
+
             .action-group {
                 padding-top: 20px;
                 clear: both;

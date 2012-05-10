@@ -4,6 +4,7 @@ PATH
     active_admin_editor (0.2.4)
       carrierwave
       rails (>= 3.0.0)
+      rmagick
 
 GEM
   remote: http://rubygems.org/
@@ -140,6 +141,7 @@ GEM
       json (~> 1.4)
     responders (0.9.1)
       railties (~> 3.1)
+    rmagick (2.13.1)
     rspec (2.9.0)
       rspec-core (~> 2.9.0)
       rspec-expectations (~> 2.9.0)
