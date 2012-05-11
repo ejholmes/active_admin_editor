@@ -29,9 +29,27 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
       <div data-wysihtml5-dialog="insertImage" style="display: none">
         <label>
           Image:
-          <input data-wysihtml5-dialog-field="src" value="http://">
+          <input data-wysihtml5-dialog-field="src" value="http://" />
         </label>
         <div class="assets_container">
+        </div>
+        <div class="asset_scale_selection">
+          <label>
+            100%
+            <input data-scale="full" type="radio" name="asset_scale" checked="checked" />
+          </label>
+          <label>
+            75%
+            <input data-scale="three_quarters" type="radio" name="asset_scale" />
+          </label>
+          <label>
+            50%
+            <input data-scale="half" type="radio" name="asset_scale" />
+          </label>
+          <label>
+            25%
+            <input data-scale="one_quarter" type="radio" name="asset_scale" />
+          </label>
         </div>
         <label>
           Align:

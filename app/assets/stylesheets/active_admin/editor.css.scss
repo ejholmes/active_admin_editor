@@ -89,6 +89,23 @@
                 padding: 8px 10px 7px;
             }
 
+            .asset_scale_selection {
+              clear: both;
+              @include clearfix;
+
+              label {
+                clear: none;
+                display: block;
+                float: left;
+                width: auto;
+                margin-right: 20px;
+
+                input {
+                  width: auto;
+                }
+              }
+            }
+
             .assets_container {
               clear: both;
               margin: 10px 0;
