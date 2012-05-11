@@ -26,8 +26,8 @@
                         image_input = active_admin_editor.find('[data-wysihtml5-dialog="insertImage"] input[data-wysihtml5-dialog-field="src"]');
 
                         if (image_input.val() == 'http://') {
-                            $.getJSON("/admin/assets.json", function(data) {
-                                container.append($('<a class="upload" href="/admin/assets/new">Upload &raquo;</a>'));
+                            $.getJSON("/admin/image_assets.json", function(data) {
+                                container.append($('<a class="upload" href="/admin/image_assets/new">Upload &raquo;</a>'));
                                 $.each(data, function(i, asset) {
                                     container.append($('<div class="asset"><img data-image-src="' + asset.storage.url + '" src="' + asset.storage.thumb.url + '" /></div>'));
                                 });
