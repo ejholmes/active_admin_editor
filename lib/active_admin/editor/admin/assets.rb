@@ -1,6 +1,15 @@
 ActiveAdmin.register ImageAsset do
+  menu parent: 'Assets', label: 'Images'
   index as: :grid do |image_asset|
     link_to(image_tag(image_asset.storage.thumb), admin_image_asset_path(image_asset))
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :storage
+    end
+
+    f.buttons
   end
 
   show do
