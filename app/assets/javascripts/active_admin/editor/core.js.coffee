@@ -31,13 +31,14 @@
 
           if image_input.val() == 'http://'
             $.getJSON '/admin/image_assets.json', (data) ->
-              container.append($('<a class="upload" href="/admin/assets/new">Upload &raquo;</a>'))
+              container.append($('<a class="upload" href="/admin/image_assets/new">Upload &raquo;</a>'))
 
               $.each data, (i, asset) ->
                 tag = $("""
                 <div class="asset">
                   <img data-image-width="#{asset.dimensions.width}"
                     data-image-height="#{asset.dimensions.height}"
+                    title="#{asset.dimensions.width}px x #{asset.dimensions.height}px"
                     src="#{asset.storage.thumb.url}" />
                 </div>
                 """)

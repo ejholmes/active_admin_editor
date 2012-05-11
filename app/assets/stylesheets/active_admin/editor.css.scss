@@ -108,7 +108,9 @@
 
             .assets_container {
               clear: both;
+              @include clearfix;
               margin: 10px 0;
+              padding: 20px 0;
 
               .asset {
                 float: left;

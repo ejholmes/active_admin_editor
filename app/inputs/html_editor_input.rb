@@ -34,6 +34,7 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
         <div class="assets_container">
         </div>
         <div class="asset_scale_selection">
+          <label>Scale:</label>
           <label>
             100%
             <input data-scale="full" type="radio" name="asset_scale" checked="checked" />
