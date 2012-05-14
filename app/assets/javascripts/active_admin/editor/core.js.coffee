@@ -54,7 +54,7 @@
               populateSrc = (el) ->
                 scale = selectedScale()
                 container.find('.asset').removeClass('active')
-                domain = el.src.match(/http:\/\/[^/]*/gi)
+                domain = el.src.match(/(http|https):\/\/[^/]*/gi)
                 if scale == 'full'
                   setDialogInput 'src', domain + $(el).data('image-src').url
                 else
