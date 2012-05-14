@@ -1,5 +1,5 @@
 require 'carrierwave'
-require 'rmagick'
+require 'RMagick'
 
 require 'active_admin/editor/version'
 require 'active_admin/editor/rails/engine'
