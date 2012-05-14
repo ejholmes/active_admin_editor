@@ -7,6 +7,8 @@ gemspec
 
 gem 'meta_search'
 gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
 gem 'activeadmin'
 
 # jquery-rails is used by the dummy application

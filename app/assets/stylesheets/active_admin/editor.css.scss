@@ -60,7 +60,7 @@
             left: 10px;
             width: 600px;
             background: #fff;
-            padding: 10px;
+            padding: 20px;
             border: 1px solid #c9d0d6;
 
             -moz-border-radius: 3px;
@@ -87,6 +87,51 @@
                 font-family: Helvetica, Arial, sans-serif;
                 outline: none;
                 padding: 8px 10px 7px;
+            }
+
+            .asset_scale_selection {
+              clear: both;
+              @include clearfix;
+
+              label {
+                clear: none;
+                display: block;
+                float: left;
+                width: auto;
+                margin-right: 20px;
+
+                input {
+                  width: auto;
+                }
+              }
+            }
+
+            .assets_container {
+              clear: both;
+              @include clearfix;
+              margin: 10px 0;
+              padding: 20px 0;
+
+              .asset {
+                float: left;
+                margin: 5px;
+                line-height: 0;
+                border: 3px solid #ddd;
+
+                &.active {
+                  border-color: #999;
+                }
+
+                img {
+                  cursor: pointer;
+                }
+              }
+
+              a.upload {
+                display: block;
+                float: right;
+                margin-right: 20px;
+              }
             }
 
             .action-group {
