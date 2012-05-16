@@ -17,7 +17,7 @@ ActiveAdmin.register ImageAsset do
       row('Dimensions') do
         "#{image_asset.dimensions[:width]}px x #{image_asset.dimensions[:height]}px"
       end
-      row('Thumnail') do
+      row('Thumbnail') do
         image_tag(image_asset.storage.thumb)
       end
       row('25%') do
