@@ -34,4 +34,29 @@ ActiveAdmin.register ImageAsset do
       end
     end
   end
+
+  controller do
+
+    def create
+      if params['qqfile']
+        @image_asset = ImageAsset.new
+        io = request.env['rack.input']
+
+        def io.original_filename=(name) @original_filename = name; end
+        def io.original_filename() @original_filename; end
+
+        io.original_filename = params['qqfile']
+
+        @image_asset.storage = io
+        if @image_asset.save!
+          render json: { success: true }.to_json
+        else
+          render nothing: true, status: 500 and return
+        end
+      else
+        create!
+      end
+    end
+
+  end
 end
