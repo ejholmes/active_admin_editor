@@ -133,7 +133,9 @@
                 text-align: center;
 
                 &.active {
-                  border-color: #999;
+                  img {
+                    border-color: #999;
+                  }
                 }
 
                 img {
@@ -146,6 +148,20 @@
                 display: block;
                 float: right;
                 margin-right: 20px;
+              }
+
+              .page_navigation {
+                clear: both;
+                float: right;
+
+                & > span {
+                  display: inline-block;
+                  margin: 0 3px;
+
+                  &.active {
+                    font-weight: bold;
+                  }
+                }
               }
             }
 

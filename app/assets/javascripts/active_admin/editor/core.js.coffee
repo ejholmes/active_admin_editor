@@ -34,20 +34,27 @@
 
         active_admin_editor.find('#asset_uploader').show()
         $.getJSON '/admin/image_assets.json', (data) ->
+          list = $('<ul class="page_content"></ul>')
 
           $.each data, (i, asset) ->
             tag = $("""
-            <div class="asset">
+            <li class="asset">
               <img data-image-width="#{asset.dimensions.width}"
                 data-image-height="#{asset.dimensions.height}"
                 title="#{asset.dimensions.width}px x #{asset.dimensions.height}px"
                 src="#{asset.storage.thumb.url}" />
-            </div>
+            </li>
             """)
             tag.find('img').data('image-src', asset.storage)
-            container.append(tag)
+            list.append(tag)
 
-          container.show()
+          container.append(list).show()
+          container.append($('<div class="page_navigation"></div>'))
+          container.paginate
+            items_per_page: 10
+            show_first: false
+            show_last: false
+
           image_dialog.find('.asset_scale_selection').show()
 
           selectedScale = ->
