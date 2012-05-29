@@ -47,7 +47,7 @@ ActiveAdmin.register ImageAsset do
 
         io.original_filename = params['qqfile']
 
-        @image_asset.storage = request.env['rack.input']
+        @image_asset.storage = io
         if @image_asset.save!
           render json: { success: true }.to_json
         else
