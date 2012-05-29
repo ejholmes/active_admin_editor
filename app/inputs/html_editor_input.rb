@@ -27,15 +27,15 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
       </div>
       
       <div data-wysihtml5-dialog="insertImage" style="display: none">
-        <label>
-          Image:
-          <input data-wysihtml5-dialog-field="src" value="http://" />
-        </label>
         <div id="asset_uploader">
           <noscript>
             <a href="/admin/image_assets/new">Upload &raquo;</a>
           </noscript>
         </div>
+        <label>
+          Image:
+          <input data-wysihtml5-dialog-field="src" value="http://" />
+        </label>
         <div class="assets_container">
         </div>
         <div class="asset_scale_selection">

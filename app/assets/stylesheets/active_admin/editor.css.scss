@@ -72,9 +72,12 @@
             box-shadow: 0 0 5px #ccc;
 
             label {
-                clear: both;
                 display: block;
                 margin: 10px 0;
+
+                & + label {
+                  clear: both;
+                }
             }
 
             input {
@@ -106,6 +109,11 @@
               }
             }
 
+            #asset_uploader {
+              margin-top: 27px;
+              float: right;
+            }
+
             .assets_container {
               clear: both;
               @include clearfix;
@@ -116,7 +124,9 @@
                 float: left;
                 margin: 5px;
                 line-height: 0;
-                border: 3px solid #ddd;
+                width: 110px;
+                height: 126px;
+                text-align: center;
 
                 &.active {
                   border-color: #999;
@@ -124,6 +134,7 @@
 
                 img {
                   cursor: pointer;
+                  border: 3px solid #ddd;
                 }
               }
 
@@ -174,7 +185,7 @@
 }
 .qq-upload-drop-area-active {background:#FF7171;}
 
-.qq-upload-list {margin:15px 35px; padding:0; list-style:disc;}
+.qq-upload-list {display: none;margin:15px 35px; padding:0; list-style:disc;}
 .qq-upload-list li { margin:0; padding:0; line-height:15px; font-size:12px;}
 .qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text {
     margin-right: 7px;
