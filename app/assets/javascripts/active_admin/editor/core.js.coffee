@@ -23,7 +23,7 @@
         image_dialog.find('.asset_scale_selection').hide()
 
       # Will re-load and re-render the assets
-      load_assets = ->
+      load_assets = (done=null) ->
         container    = image_dialog.find('.assets_container')
         save_button  = image_dialog.find('a[data-wysihtml5-dialog-action="save"]')
 
@@ -93,16 +93,15 @@
 
               fireEvent save_button[0], 'click'
             )
+        done() if done
 
-      clear_and_load_assets = ->
-        clear_assets()
-        load_assets()
-      
       # HTML 5 Uploading
       uploader = new qq.FileUploader
         element: document.getElementById('asset_uploader'),
         action: '/admin/image_assets.json'
-        onComplete: clear_and_load_assets
+        onComplete: ->
+          clear_assets()
+          load_assets()
 
       editor.on 'show:dialog', (dialog) ->
         image_input = image_dialog.find('input[data-wysihtml5-dialog-field="src"]')
