@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    active_admin_editor (0.3.2)
+    active_admin_editor (0.3.4)
       carrierwave
       rails (>= 3.0.0)
       rmagick
