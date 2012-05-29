@@ -31,6 +31,11 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
           Image:
           <input data-wysihtml5-dialog-field="src" value="http://" />
         </label>
+        <div id="asset_uploader">
+          <noscript>
+            <a href="/admin/image_assets/new">Upload &raquo;</a>
+          </noscript>
+        </div>
         <div class="assets_container">
         </div>
         <div class="asset_scale_selection">

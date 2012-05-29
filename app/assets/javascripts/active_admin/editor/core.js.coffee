@@ -17,6 +17,10 @@
 
       image_dialog = active_admin_editor.find('[data-wysihtml5-dialog="insertImage"]')
 
+      uploader = new qq.FileUploader
+        element: document.getElementById('asset_uploader'),
+        action: '/admin/image_assets.json'
+
       editor.on 'show:dialog', (dialog) ->
         if dialog.command == 'insertImage'
           container    = image_dialog.find('.assets_container').html('').hide()
@@ -31,7 +35,6 @@
 
           if image_input.val() == 'http://'
             $.getJSON '/admin/image_assets.json', (data) ->
-              container.append($('<a class="upload" href="/admin/image_assets/new">Upload &raquo;</a>'))
 
               $.each data, (i, asset) ->
                 tag = $("""
