@@ -107,6 +107,10 @@
                   width: auto;
                 }
               }
+
+              & + label {
+                clear: both;
+              }
             }
 
             #asset_uploader {

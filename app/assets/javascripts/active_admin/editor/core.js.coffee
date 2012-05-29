@@ -26,6 +26,7 @@
 
       # Will re-load and re-render the assets
       load_assets = (root) ->
+        active_admin_editor.find('#asset_uploader').hide()
         container    = root.find('.assets_container').html('').hide()
         save_button  = root.find('a[data-wysihtml5-dialog-action="save"]')
         image_input  = root.find('input[data-wysihtml5-dialog-field="src"]')
@@ -37,6 +38,7 @@
           f.val(val)
 
         if image_input.val() == 'http://'
+          active_admin_editor.find('#asset_uploader').show()
           $.getJSON '/admin/image_assets.json', (data) ->
 
             $.each data, (i, asset) ->
