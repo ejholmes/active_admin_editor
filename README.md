@@ -32,6 +32,13 @@ And the following to your active\_admin.css.scss and active\_admin.js:
 @import 'active_admin/editor';
 ```
 
+Now install the migrations:
+
+```bash
+$ rake active_admin_editor:install:migrations
+$ rake db:migrate
+```
+
 And finally install the wysiwyg css file:
 
 ```bash
