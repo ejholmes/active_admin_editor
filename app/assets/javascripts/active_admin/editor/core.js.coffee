@@ -58,7 +58,7 @@
           image_dialog.find('.asset_scale_selection').show()
 
           selectedScale = ->
-            image_dialog.find('input[@name="asset_scale"]:checked').data('scale')
+            image_dialog.find('input[name="asset_scale"]:checked').data('scale')
 
           populateSrc = (el) ->
             scale = selectedScale()
