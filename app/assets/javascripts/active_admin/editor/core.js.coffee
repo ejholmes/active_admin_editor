@@ -110,5 +110,5 @@
           load_assets() if image_input.val() == 'http://'
 
   $ ->
-    $('.active_admin_editor').active_admin_editor()
+    $('.active_admin_editor').each(->$(@).active_admin_editor())
 )(jQuery)

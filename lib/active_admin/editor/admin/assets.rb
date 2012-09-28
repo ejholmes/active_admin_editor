@@ -38,7 +38,18 @@ ActiveAdmin.register ImageAsset do
   controller do
 
     def create
-      if params['qqfile']
+      # If an app is using Rack::RawUpload, it can just use
+      # params['file'] and not worry with original_filename parsing.
+      if params['file']
+        @image_asset = ImageAsset.new
+        @image_asset.storage = params['file']
+
+        if @image_asset.save!
+          render json: { success: true }.to_json
+        else
+          render nothing: true, status: 500 and return
+        end
+      elsif params['qqfile']
         @image_asset = ImageAsset.new
         io = request.env['rack.input']
 
