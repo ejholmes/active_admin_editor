@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     active_admin_editor (0.3.6)
-      carrierwave
       rails (>= 3.0.0)
 
 GEM
@@ -59,9 +58,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    carrierwave (0.7.1)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
     childprocess (0.3.2)
       ffi (~> 1.0.6)
     coffee-rails (3.2.2)
