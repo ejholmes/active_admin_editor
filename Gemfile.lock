@@ -1,10 +1,9 @@
 PATH
   remote: .
   specs:
-    active_admin_editor (0.3.5)
+    active_admin_editor (0.3.6)
       carrierwave
       rails (>= 3.0.0)
-      rmagick
 
 GEM
   remote: http://rubygems.org/
@@ -60,7 +59,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    carrierwave (0.6.2)
+    carrierwave (0.7.1)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
     childprocess (0.3.2)
@@ -150,7 +149,6 @@ GEM
       json (~> 1.4)
     responders (0.9.1)
       railties (~> 3.1)
-    rmagick (2.13.1)
     rspec (2.9.0)
       rspec-core (~> 2.9.0)
       rspec-expectations (~> 2.9.0)
@@ -206,7 +204,6 @@ DEPENDENCIES
   factory_girl_rails
   jquery-rails
   meta_search
-  rspec
   rspec-rails
   sass-rails
   sqlite3

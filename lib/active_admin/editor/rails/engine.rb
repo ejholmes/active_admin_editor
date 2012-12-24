@@ -3,8 +3,11 @@ module ActiveAdmin
     module Rails
       class Engine < ::Rails::Engine
         engine_name 'active_admin_editor'
-        config.after_initialize do
-          require 'active_admin/editor/admin/assets'
+        config.generators do |g|
+          g.test_framework      :rspec,        :fixture => false
+          g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+          g.assets false
+          g.helper false
         end
       end
     end
