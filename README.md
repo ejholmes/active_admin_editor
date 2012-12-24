@@ -12,8 +12,6 @@ interface using [wysihtml5](https://github.com/xing/wysihtml5).
 Add the following to your Gemfile:
 
 ```ruby
-# Gemfile
-
 gem 'active_admin_editor'
 ```
 
