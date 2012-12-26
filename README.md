@@ -5,7 +5,7 @@
 This is a wysiyg html editor for the [Active Admin](http://activeadmin.info/)
 interface using [wysihtml5](https://github.com/xing/wysihtml5).
 
-![screenshot](http://i.imgur.com/vfX1A.png)
+![screenshot](https://dl.dropbox.com/u/1906634/Captured/5nt8k.png)
 
 ## Installation
 
