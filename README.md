@@ -1,6 +1,6 @@
 # Active Admin Editor
 
-[![Build Status](https://travis-ci.org/ejholmes/active_admin_editor.png?branch=refactor)](https://travis-ci.org/ejholmes/active_admin_editor)
+[![Build Status](https://travis-ci.org/ejholmes/active_admin_editor.png)](https://travis-ci.org/ejholmes/active_admin_editor)
 
 This is a wysiyg html editor for the [Active Admin](http://activeadmin.info/)
 interface using [wysihtml5](https://github.com/xing/wysihtml5).
