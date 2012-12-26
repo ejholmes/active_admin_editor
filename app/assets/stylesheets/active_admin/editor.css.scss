@@ -1,0 +1,42 @@
+@import 'active_admin/mixins';
+
+.active_admin_editor {
+  width: 76%;
+  float: left;
+
+  textarea {
+    border-radius: 0 0 3px 3px;
+    width: 100%;
+    height: 300px;
+    border-top: none;
+
+    &:focus {
+      @include box-shadow(none);
+      border: 1px solid #C9D0D6;
+      border-top: none;
+    }
+  }
+
+  .active_admin_editor_toolbar {
+    border: 1px solid #C9D0D6;
+    border-bottom-style: dashed;
+    border-radius: 3px 3px 0 0;
+    background: #fff;
+
+    ul {
+    }
+
+    ul li {
+      display: inline-block;
+    }
+
+    ul li a {
+      display: block;
+      padding: 5px;
+    }
+  }
+
+  iframe.wysihtml5-sandbox {
+    box-sizing: border-box !important;
+  }
+}

@@ -6,7 +6,7 @@ describe 'Pages', :js => true do
   end
 
   it 'does something' do
-    visit admin_pages_path
-    expect(current_path).to eq(admin_pages_path)
+    visit new_admin_page_path
+    expect(current_path).to eq(new_admin_page_path)
   end
 end
