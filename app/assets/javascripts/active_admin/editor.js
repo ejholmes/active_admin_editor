@@ -1,10 +1,9 @@
 //= require jquery
 //= require wysihtml5
-
 //= require active_admin/editor/wysiwyg
 //= require active_admin/editor/parser_rules
 
-(function(window, document, $, wysihtml5, parserRules) {
+(function(window, document, $, wysihtml5) {
   window.AA = (window.AA || {})
   window.AA.editors = []
 
@@ -24,4 +23,6 @@
       window.AA.editors.push(new Editor(this))
     })
   })
+
+  window.Editor = Editor
 })(window, document, jQuery, wysihtml5)
