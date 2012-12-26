@@ -40,3 +40,10 @@ ActiveAdmin.register Page do
   end
 end
 ```
+
+## Contributing
+
+### Tests
+
+Runy RSpec tests with `bundle exec rake`. Run JavaScript specs with `bundle
+exec rake konacha:serve`.

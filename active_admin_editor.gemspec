@@ -23,8 +23,15 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails', '~> 2.12.0'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'database_cleaner', '~> 0.9.1'
-  s.add_development_dependency 'capybara'
+  s.add_development_dependency 'capybara', '~> 1.1.4'
   s.add_development_dependency 'activeadmin', '~> 0.4.3'
-  s.add_development_dependency 'poltergeist'
+  s.add_development_dependency 'poltergeist', '~> 1.0.2'
   s.add_development_dependency 'faker'
+
+  # JavaScript
+  s.add_development_dependency 'konacha', '~> 2.1.0'
+  s.add_development_dependency 'chai-jquery-rails'
+  s.add_development_dependency 'sinon-chai-rails'
+  s.add_development_dependency 'sinon-rails'
+  s.add_development_dependency 'ejs'
 end
