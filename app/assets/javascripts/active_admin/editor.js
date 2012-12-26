@@ -1,6 +1,7 @@
 //= require jquery
 //= require wysihtml5
 
+//= require active_admin/editor/wysiwyg
 //= require active_admin/editor/parser_rules
 
 (function(window, document, $, wysihtml5, parserRules) {
@@ -13,7 +14,8 @@
     this.$toolbar = this.$el.find('.active_admin_editor_toolbar')
     this.editor = new wysihtml5.Editor(this.$textarea.attr('id'), {
       toolbar: this.$toolbar.attr('id'),
-      parserRules: parserRules
+      stylesheets: window.AA.editor.stylesheets,
+      parserRules: window.AA.editor.parserRules
     })
   }
 
@@ -22,4 +24,4 @@
       window.AA.editors.push(new Editor(this))
     })
   })
-})(window, document, jQuery, wysihtml5, parserRules)
+})(window, document, jQuery, wysihtml5)
