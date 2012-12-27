@@ -22,24 +22,26 @@
     this.$toolbar = $(template)
 
     if (config.uploads_enabled) {
-      this.handleUploads('insertImage')
-      this.handleUploads('createLink')
+      this.handleUploads(this.$toolbar.find('input.uploadable'))
     }
 
     this.$el.find('.wrap').prepend(this.$toolbar)
   }
 
-  Editor.prototype.handleUploads = function(dialog) {
-    $dialog = this.$toolbar.find('[data-wysihtml5-dialog="' + dialog + '"]')
-    $dialog.append(JST['active_admin/editor/templates/uploader']({ spinner: config.spinner }))
-    $dialog.each(function() {
-      $file   = $dialog.find('input:file')
-      $input  = $dialog.find('input:text')
+  Editor.prototype.handleUploads = function(inputs) {
+    $(inputs).each(function() {
+      $this = $(this)
 
-      $file.on('change', function() {
-        $input.val('')
+      template = JST['active_admin/editor/templates/uploader']({ spinner: config.spinner })
+      $uploader = $(template)
+
+      $dialog = $this.closest('[data-wysihtml5-dialog]')
+      $dialog.append($uploader)
+
+      $uploader.find('input:file').on('change', function() {
+        $this.val('')
         _this.upload(this.files[0], function(location) {
-          $input.val(location)
+          $this.val(location)
         })
       })
     })
