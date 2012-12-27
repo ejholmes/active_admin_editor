@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ejholmes/active_admin_editor.png)](https://travis-ci.org/ejholmes/active_admin_editor)
 
-This is a wysiyg html editor for the [Active Admin](http://activeadmin.info/)
+This is a wysiwyg html editor for the [Active Admin](http://activeadmin.info/)
 interface using [wysihtml5](https://github.com/xing/wysihtml5).
 
 ![screenshot](https://dl.dropbox.com/u/1906634/Captured/6V2rZ.png)
