@@ -70,7 +70,7 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
   end
 
   def generate_policy
-    ActiveAdmin::Editor.policy
+    ActiveAdmin::Editor::Policy.new
   end
 
   def wrapper_html_options
@@ -78,8 +78,8 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
     policy = generate_policy
     super.merge(
       :data => {
-        :policy_document => policy[:document],
-        :policy_signature => policy[:signature]
+        :policy_document => policy.document,
+        :policy_signature => policy.signature
       }
     )
   end
