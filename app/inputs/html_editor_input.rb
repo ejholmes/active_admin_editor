@@ -46,9 +46,7 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
         </label>
         <div style="clear: both;"></div>
         or
-        <form method="POST">
-          <input type="file" name="file" id="file" />
-        </form>
+        <input type="file" name="file" id="file" />
         <div style="clear: both;"></div>
       </div>
       

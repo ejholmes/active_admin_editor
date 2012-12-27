@@ -3,8 +3,7 @@
 //= require active_admin/editor/config
 //= require active_admin/editor/parser_rules
 
-(function(window, document, $, wysihtml5) {
-  window.AA = (window.AA || {})
+(function(window, document, $, wysihtml5, config) {
   window.AA.editors = []
 
   var Editor = function(el) {
@@ -27,38 +26,53 @@
   Editor.prototype.attachEditor = function() {
     this.editor = new wysihtml5.Editor(this.$textarea.attr('id'), {
       toolbar: this.$toolbar.attr('id'),
-      stylesheets: window.AA.editor.stylesheets,
-      parserRules: window.AA.editor.parserRules
+      stylesheets: config.stylesheets,
+      parserRules: config.parserRules
     })
   }
 
+  Editor.prototype.uploading = function(uploading) {
+    if (uploading) {
+      this._uploading = true
+      this.$el.addClass('uploading')
+    } else {
+      this._uploading = false
+      this.$el.removeClass('uploading')
+    }
+
+    return this._uploading
+  }
+
   Editor.prototype.upload = function(file, callback) {
+    _this = this
+    _this.uploading(true)
+
     var xhr = new XMLHttpRequest()
       , fd = new FormData()
-      , key = window.AA.editor.storage_dir + '/' + file.name
+      , key = config.storage_dir + '/' + file.name
 
     fd.append('key', key)
-    fd.append('AWSAccessKeyId', window.AA.editor.aws_access_key_id)
+    fd.append('AWSAccessKeyId', config.aws_access_key_id)
     fd.append('acl', 'public-read')
-    fd.append('policy', window.AA.editor.policy_document)
-    fd.append('signature', window.AA.editor.signature)
+    fd.append('policy', config.policy_document)
+    fd.append('signature', config.signature)
     fd.append('Content-Type', file.type)
     fd.append('file', file)
 
     xhr.upload.addEventListener('progress', function(e) {
-      console.log((e.loaded / e.total) * 100)
+      _this.loaded   = e.loaded
+      _this.total    = e.total
+      _this.progress = e.loaded / e.total
     }, false)
 
     xhr.onreadystatechange = function() {
       if (xhr.readyState != 4) { return }
+      _this.uploading(false)
       callback(xhr.getResponseHeader('Location'))
     }
 
-    xhr.open('POST', 'https://' + window.AA.editor.s3_bucket + '.s3.amazonaws.com', true)
-
-    xhr.send(fd)
-
-    return xhr
+    xhr.open('POST', 'https://' + config.s3_bucket + '.s3.amazonaws.com', true)
+    return xhr.send(fd)
   }
 
   $(function() {
@@ -68,4 +82,4 @@
   })
 
   window.Editor = Editor
-})(window, document, jQuery, wysihtml5)
+})(window, document, jQuery, wysihtml5, window.AA.editor)
