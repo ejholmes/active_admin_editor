@@ -14,6 +14,7 @@
     this.signature  = this.$el.data('policy-signature')
 
     this.$file.on('change', function() {
+      _this.$image_url.val('')
       _this.upload(this.files[0], function(location) {
         _this.$image_url.val(location)
       })

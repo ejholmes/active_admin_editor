@@ -49,8 +49,11 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
 
     if upload_enabled?
       html << <<-HTML
-          or
-          <input type="file" name="file" id="file" />
+          <div class="active_admin_editor_upload">
+            or
+            <input type="file" name="file" id="file" />
+            <img src="#{ActionController::Base.helpers.asset_path 'active_admin/editor/loader.gif'}" class="spinner"></img>
+          </div>
       HTML
     end
 

@@ -4,6 +4,14 @@
   width: 76%;
   float: left;
 
+  &.uploading .spinner {
+    display: inline;
+  }
+
+  .spinner {
+    display: none;
+  }
+
   textarea {
     border-radius: 0 0 3px 3px;
     width: 100%;
