@@ -23,6 +23,12 @@ module ActiveAdmin
       def storage_dir
         @storage_dir ||= 'uploads'
       end
+
+      def s3_configured?
+        aws_access_key_id.present? &&
+          aws_access_secret.present? &&
+          s3_bucket.present?
+      end
     end
   end
 end

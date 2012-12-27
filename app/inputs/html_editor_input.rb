@@ -1,6 +1,6 @@
 class HtmlEditorInput < Formtastic::Inputs::TextInput
   def toolbar
-    <<-HTML
+    html = <<-HTML
     <div id="#{input_html_options[:id]}-toolbar" class="active_admin_editor_toolbar">
       <ul>
         <li><a data-wysihtml5-action="change_view">Source</a></li>
@@ -45,13 +45,25 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
           </select>
         </label>
         <div style="clear: both;"></div>
-        or
-        <input type="file" name="file" id="file" />
+    HTML
+
+    if upload_enabled?
+      html << <<-HTML
+          or
+          <input type="file" name="file" id="file" />
+      HTML
+    end
+
+    html << <<-HTML
         <div style="clear: both;"></div>
       </div>
       
     </div>
     HTML
+  end
+
+  def upload_enabled?
+    ActiveAdmin::Editor.configuration.s3_configured?
   end
 
   def to_html
