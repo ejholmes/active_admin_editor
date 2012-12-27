@@ -15,11 +15,36 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
         <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3">h3</a></li>
       </ul>
 
-      <div data-wysihtml5-dialog="createLink" style="display: none">
+      <div class="active_admin_editor_dialog" data-wysihtml5-dialog="createLink" style="display: none;">
+        <div class="action-group">
+          <a href="#" data-wysihtml5-dialog-action="save" class="button">OK</a>
+          <a href="#" data-wysihtml5-dialog-action="cancel">Cancel</a>
+        </div>
         <label>
           Link:
-          <input data-wysihtml5-dialog-field="href" value="http://">
+          <input type="text" data-wysihtml5-dialog-field="href" value="http://">
         </label>
+        <div style="clear: both;"></div>
+      </div>
+
+      <div class="active_admin_editor_dialog" data-wysihtml5-dialog="insertImage" style="display: none;">
+        <div class="action-group">
+          <a href="#" data-wysihtml5-dialog-action="save" class="button">OK</a>
+          <a href="#" data-wysihtml5-dialog-action="cancel">Cancel</a>
+        </div>
+        <label>
+          Image:
+          <input type="text" data-wysihtml5-dialog-field="src" value="http://">
+        </label>
+        <label>
+          Align:
+          <select data-wysihtml5-dialog-field="className">
+            <option value="">default</option>
+            <option value="wysiwyg-float-left">left</option>
+            <option value="wysiwyg-float-right">right</option>
+          </select>
+        </label>
+        <div style="clear: both;"></div>
       </div>
       
     </div>
