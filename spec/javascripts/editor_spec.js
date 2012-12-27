@@ -14,24 +14,32 @@ describe('Editor', function() {
     this.xhr.restore()
   })
 
-  it('sets $el', function() {
+  it('sets .$el', function() {
     expect(this.editor.$el).to.exist
   })
 
-  it('sets $textarea', function() {
+  it('sets .$textarea', function() {
     expect(this.editor.$textarea).to.exist
   })
 
-  it('sets $toolbar', function() {
+  it('sets .$toolbar', function() {
     expect(this.editor.$toolbar).to.exist
   })
 
-  it('sets $file', function() {
+  it('sets .$file', function() {
     expect(this.editor.$file).to.exist
   })
 
-  it('sets $image_url', function() {
+  it('sets .$image_url', function() {
     expect(this.editor.$image_url).to.exist
+  })
+
+  it('sets .policy', function() {
+    expect(this.editor.policy.document).to.eq('policy document')
+  })
+
+  it('sets .signature', function() {
+    expect(this.editor.policy.signature).to.eq('policy signature')
   })
 
   it('attaches wysihtml5', function() {

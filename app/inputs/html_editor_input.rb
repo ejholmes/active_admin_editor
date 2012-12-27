@@ -69,19 +69,13 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
     ActiveAdmin::Editor.configuration.s3_configured?
   end
 
-  def generate_policy
+  def policy
     ActiveAdmin::Editor::Policy.new
   end
 
   def wrapper_html_options
     return super unless upload_enabled?
-    policy = generate_policy
-    super.merge(
-      :data => {
-        :policy_document => policy.document,
-        :policy_signature => policy.signature
-      }
-    )
+    super.merge( :data => { :policy => policy.to_json })
   end
 
   def to_html

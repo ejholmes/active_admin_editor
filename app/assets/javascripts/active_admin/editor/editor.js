@@ -1,17 +1,15 @@
 (function(window, document, wysihtml5) {
   var config = null
 
-  var Editor = function(el, cfg) {
-    config          = cfg
+  var Editor = function(el, _config) {
+    config          = _config
     _this           = this
     this.$el        = $(el)
     this.$textarea  = this.$el.find('textarea')
     this.$toolbar   = this.$el.find('.toolbar')
     this.$file      = this.$el.find('input:file')
     this.$image_url = this.$el.find('#image_url')
-
-    this.policy     = this.$el.data('policy-document')
-    this.signature  = this.$el.data('policy-signature')
+    this.policy     = this.$el.data('policy')
 
     this.$file.on('change', function() {
       _this.$image_url.val('')
@@ -48,8 +46,8 @@
     fd.append('key', key)
     fd.append('AWSAccessKeyId', config.aws_access_key_id)
     fd.append('acl', 'public-read')
-    fd.append('policy', this.policy)
-    fd.append('signature', this.signature)
+    fd.append('policy', this.policy.document)
+    fd.append('signature', this.policy.signature)
     fd.append('Content-Type', file.type)
     fd.append('file', file)
 

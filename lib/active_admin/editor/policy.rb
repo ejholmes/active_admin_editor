@@ -15,6 +15,10 @@ module ActiveAdmin
         @signature ||= Base64.encode64(digest).gsub("\n", '')
       end
 
+      def to_json
+        { :document => document, :signature => signature }.to_json
+      end
+
     private
 
       def document_hash
