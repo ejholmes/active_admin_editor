@@ -1,5 +1,5 @@
 (function(window, document, wysihtml5) {
-  config = null
+  var config = null
 
   var Editor = function(el, cfg) {
     config          = cfg
