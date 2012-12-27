@@ -1,6 +1,6 @@
 //= require jquery
 //= require wysihtml5
-//= require active_admin/editor/wysiwyg
+//= require active_admin/editor/config
 //= require active_admin/editor/parser_rules
 
 (function(window, document, $, wysihtml5) {

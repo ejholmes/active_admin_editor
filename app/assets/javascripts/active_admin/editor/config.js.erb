@@ -2,5 +2,7 @@
   window.AA = (window.AA || {})
   window.AA.editor = (window.AA.editor || {})
 
+  window.AA.editor.aws_access_key_id = '<%= ActiveAdmin::Editor.configuration.aws_access_key_id %>'
+  window.AA.editor.aws_access_secret = '<%= ActiveAdmin::Editor.configuration.aws_access_secret %>'
   window.AA.editor.stylesheets = '<%= asset_path 'active_admin/editor/wysiwyg.css' %>'
 })(window, document)
