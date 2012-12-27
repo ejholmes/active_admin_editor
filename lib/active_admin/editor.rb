@@ -11,6 +11,14 @@ module ActiveAdmin
   module Editor
     class << self
 
+      def policy
+        document = encoded_policy_document
+        { :document => document,
+          :signature => signature(document) }
+      end
+
+    private
+
       def policy_document
         { :expiration => Time.now.utc + 1.hour,
           :conditions => [
@@ -27,17 +35,15 @@ module ActiveAdmin
         Base64.encode64(policy_document.to_json).gsub("\n", '')
       end
 
-      def signature
+      def signature(document)
         Base64.encode64(
           OpenSSL::HMAC.digest(
             OpenSSL::Digest::Digest.new('sha1'),
             config.aws_access_secret,
-            encoded_policy_document
+            document
           )
         ).gsub("\n", '')
       end
-
-    private
 
       def config
         ActiveAdmin::Editor.configuration

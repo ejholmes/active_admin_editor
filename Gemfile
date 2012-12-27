@@ -14,6 +14,10 @@ gem 'konacha'
 
 # jquery-rails is used by the dummy application
 gem 'jquery-rails'
+gem 'chai-jquery-rails'
+gem 'sinon-chai-rails'
+gem 'sinon-rails'
+gem 'ejs'
 
 group :development, :test do
 end

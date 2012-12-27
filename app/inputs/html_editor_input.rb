@@ -66,8 +66,18 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
     ActiveAdmin::Editor.configuration.s3_configured?
   end
 
+  def generate_policy
+    ActiveAdmin::Editor.policy
+  end
+
   def to_html
-    html = '<div class="active_admin_editor">'
+    html = ''
+    if upload_enabled?
+      policy = generate_policy.dup
+      html << %(<div class="active_admin_editor" data-policy-document="#{policy[:document]}" data-policy-signature="#{policy[:signature]}">)
+    else
+      html << %(<div class="active_admin_editor">)
+    end
     html << toolbar.html_safe
     html << builder.text_area(method, input_html_options)
     html << '</div>'

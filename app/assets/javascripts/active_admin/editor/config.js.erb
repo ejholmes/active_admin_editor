@@ -5,8 +5,6 @@
   <% %w(aws_access_key_id aws_access_secret s3_bucket storage_dir).each do |option| %>
   window.AA.editor.<%= option %> = '<%= ActiveAdmin::Editor.configuration.send(option.to_sym) %>'
   <% end %>
-  window.AA.editor.policy_document = '<%= ActiveAdmin::Editor.encoded_policy_document %>'
-  window.AA.editor.signature = '<%= ActiveAdmin::Editor.signature %>'
 
   window.AA.editor.stylesheets = '<%= asset_path 'active_admin/editor/wysiwyg.css' %>'
 })(window, document)
