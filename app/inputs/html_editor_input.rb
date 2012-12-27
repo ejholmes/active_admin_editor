@@ -34,7 +34,7 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
         </div>
         <label>
           Image URL:
-          <input type="text" data-wysihtml5-dialog-field="src" value="http://">
+          <input type="text" data-wysihtml5-dialog-field="src" value="http://" id="image_url">
         </label>
         <label>
           Align:
@@ -44,6 +44,11 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
             <option value="wysiwyg-float-right">right</option>
           </select>
         </label>
+        <div style="clear: both;"></div>
+        or
+        <form method="POST">
+          <input type="file" name="file" id="file" />
+        </form>
         <div style="clear: both;"></div>
       </div>
       
