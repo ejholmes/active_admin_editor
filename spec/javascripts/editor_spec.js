@@ -26,14 +26,6 @@ describe('Editor', function() {
     expect(this.editor.$toolbar).to.exist
   })
 
-  it('sets .$file', function() {
-    expect(this.editor.$file).to.exist
-  })
-
-  it('sets .$image_url', function() {
-    expect(this.editor.$image_url).to.exist
-  })
-
   it('sets .policy', function() {
     expect(this.editor.policy.document).to.eq('policy document')
   })
