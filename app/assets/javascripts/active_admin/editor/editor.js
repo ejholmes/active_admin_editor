@@ -32,14 +32,8 @@
   }
 
   Editor.prototype.uploading = function(uploading) {
-    if (uploading) {
-      this._uploading = true
-      this.$el.addClass('uploading')
-    } else {
-      this._uploading = false
-      this.$el.removeClass('uploading')
-    }
-
+    this._uploading = uploading
+    this.$el.toggleClass('uploading', this._uploading)
     return this._uploading
   }
 

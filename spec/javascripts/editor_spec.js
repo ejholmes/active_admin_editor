@@ -7,7 +7,7 @@ describe('Editor', function() {
     this.xhr = sinon.useFakeXMLHttpRequest()
     $('body').append(JST['templates/editor']())
     this.config = sinon.stub()
-    this.editor = new window.Editor($('.active_admin_editor')[0], this.config)
+    this.editor = new window.Editor($('.html_editor')[0], this.config)
   })
 
   afterEach(function() {
