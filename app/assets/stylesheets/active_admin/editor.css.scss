@@ -30,9 +30,12 @@
     ul li a {
       display: block;
       padding: 5px 10px;
+      text-decoration: none;
 
-      &.wysihtml5-command-active {
-        font-weight: bold;
+      &.wysihtml5-command-active,
+      &.wysihtml5-action-active,
+      &.wysihtml5-command-dialog-opened {
+        text-decoration: underline;
       }
     }
   }
@@ -43,6 +46,11 @@
 
     label {
       margin-bottom: 10px;
+      width: 300px;
+
+      input {
+        display: block;
+      }
 
       select {
         display: block;
@@ -52,6 +60,7 @@
     .action-group {
       display: block;
       float: right;
+      margin-top: 5px;
       clear: both;
     }
   }

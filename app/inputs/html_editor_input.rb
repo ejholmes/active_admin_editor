@@ -33,7 +33,7 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
           <a href="#" data-wysihtml5-dialog-action="cancel">Cancel</a>
         </div>
         <label>
-          Image:
+          Image URL:
           <input type="text" data-wysihtml5-dialog-field="src" value="http://">
         </label>
         <label>
