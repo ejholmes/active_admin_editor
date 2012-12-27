@@ -1,8 +1,10 @@
 @import 'active_admin/mixins';
 
-.active_admin_editor {
-  width: 76%;
-  float: left;
+.html_editor {
+  .wrap {
+    width: 76%;
+    float: left;
+  }
 
   &.uploading .spinner {
     display: inline;
@@ -25,7 +27,7 @@
     }
   }
 
-  .active_admin_editor_toolbar {
+  .toolbar {
     width: 100%;
     padding: 0 10px;
     border: 1px solid #C9D0D6;
@@ -50,7 +52,7 @@
     }
   }
 
-  .active_admin_editor_dialog {
+  .dialog {
     border-top: 1px solid lighten(#C9D0D6, 10%);
     padding: 10px 20px;
     margin: 0 -10px;

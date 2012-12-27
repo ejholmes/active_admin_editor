@@ -8,7 +8,7 @@
   window.AA.editors = []
 
   $(function() {
-    $('.active_admin_editor').each(function() {
+    $('.html_editor').each(function() {
       window.AA.editors.push(new Editor(this, window.AA.editor))
     })
   })

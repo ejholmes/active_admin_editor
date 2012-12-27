@@ -6,7 +6,7 @@
     _this           = this
     this.$el        = $(el)
     this.$textarea  = this.$el.find('textarea')
-    this.$toolbar   = this.$el.find('.active_admin_editor_toolbar')
+    this.$toolbar   = this.$el.find('.toolbar')
     this.$file      = this.$el.find('input:file')
     this.$image_url = this.$el.find('#image_url')
 

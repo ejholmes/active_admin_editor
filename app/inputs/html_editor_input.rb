@@ -1,7 +1,7 @@
 class HtmlEditorInput < Formtastic::Inputs::TextInput
   def toolbar
     html = <<-HTML
-    <div id="#{input_html_options[:id]}-toolbar" class="active_admin_editor_toolbar">
+    <div id="#{input_html_options[:id]}-toolbar" class="toolbar">
       <ul>
         <li><a data-wysihtml5-action="change_view">Source</a></li>
         <li><a data-wysihtml5-command="bold" title="Bold">Bold</a></li>
@@ -15,7 +15,7 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
         <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3">h3</a></li>
       </ul>
 
-      <div class="active_admin_editor_dialog" data-wysihtml5-dialog="createLink" style="display: none;">
+      <div class="dialog" data-wysihtml5-dialog="createLink" style="display: none;">
         <div class="action-group">
           <a href="#" data-wysihtml5-dialog-action="save" class="button">OK</a>
           <a href="#" data-wysihtml5-dialog-action="cancel">Cancel</a>
@@ -27,7 +27,7 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
         <div style="clear: both;"></div>
       </div>
 
-      <div class="active_admin_editor_dialog" data-wysihtml5-dialog="insertImage" style="display: none;">
+      <div class="dialog" data-wysihtml5-dialog="insertImage" style="display: none;">
         <div class="action-group">
           <a href="#" data-wysihtml5-dialog-action="save" class="button">OK</a>
           <a href="#" data-wysihtml5-dialog-action="cancel">Cancel</a>
@@ -49,7 +49,7 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
 
     if upload_enabled?
       html << <<-HTML
-          <div class="active_admin_editor_upload">
+          <div class="upload">
             or
             <input type="file" name="file" id="file" />
             <img src="#{ActionController::Base.helpers.asset_path 'active_admin/editor/loader.gif'}" class="spinner"></img>
@@ -73,14 +73,19 @@ class HtmlEditorInput < Formtastic::Inputs::TextInput
     ActiveAdmin::Editor.policy
   end
 
+  def wrapper_html_options
+    return super unless upload_enabled?
+    policy = generate_policy
+    super.merge(
+      :data => {
+        :policy_document => policy[:document],
+        :policy_signature => policy[:signature]
+      }
+    )
+  end
+
   def to_html
-    html = ''
-    if upload_enabled?
-      policy = generate_policy.dup
-      html << %(<div class="active_admin_editor" data-policy-document="#{policy[:document]}" data-policy-signature="#{policy[:signature]}">)
-    else
-      html << %(<div class="active_admin_editor">)
-    end
+    html = '<div class="wrap">'
     html << toolbar.html_safe
     html << builder.text_area(method, input_html_options)
     html << '</div>'
