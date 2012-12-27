@@ -12,13 +12,7 @@ module ActiveAdmin
       end
 
       def signature
-        @signature ||= Base64.encode64(
-          OpenSSL::HMAC.digest(
-            OpenSSL::Digest::Digest.new('sha1'),
-            configuration.aws_access_secret,
-            document
-          )
-        ).gsub("\n", '')
+        @signature ||= Base64.encode64(digest).gsub("\n", '')
       end
 
     private
@@ -33,6 +27,14 @@ module ActiveAdmin
             [ 'content-length-range', 0, 524288000 ]
           ]
         }
+      end
+
+      def digest
+        OpenSSL::HMAC.digest(
+          OpenSSL::Digest::Digest.new('sha1'),
+          configuration.aws_access_secret,
+          document
+        )
       end
 
       def configuration
