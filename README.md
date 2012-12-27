@@ -57,7 +57,7 @@ end
 
 Then add the following CORS configuration to the S3 bucket:
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
     <CORSRule>
