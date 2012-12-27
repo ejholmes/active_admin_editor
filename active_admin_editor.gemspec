@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir['spec/**/*']
 
   s.add_dependency 'rails', '>= 3.0.0'
+  s.add_dependency 'ejs'
 
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec', '~> 2.12.0'
@@ -33,5 +34,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'chai-jquery-rails'
   s.add_development_dependency 'sinon-chai-rails'
   s.add_development_dependency 'sinon-rails'
-  s.add_development_dependency 'ejs'
 end

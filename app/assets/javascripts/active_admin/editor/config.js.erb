@@ -7,4 +7,6 @@
   <% end %>
 
   window.AA.editor.stylesheets = '<%= asset_path 'active_admin/editor/wysiwyg.css' %>'
+  window.AA.editor.spinner = '<%= asset_path 'active_admin/editor/loader.gif' %>'
+  window.AA.editor.uploads_enabled = <%= ActiveAdmin::Editor.configuration.s3_configured? %>
 })(window, document)

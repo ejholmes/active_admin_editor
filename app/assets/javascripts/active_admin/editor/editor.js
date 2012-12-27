@@ -1,3 +1,5 @@
+//= require_tree ./templates
+
 (function(window, document, wysihtml5) {
   var config = null
 
@@ -6,19 +8,41 @@
     _this           = this
     this.$el        = $(el)
     this.$textarea  = this.$el.find('textarea')
-    this.$toolbar   = this.$el.find('.toolbar')
-    this.$file      = this.$el.find('input:file')
-    this.$image_url = this.$el.find('#image_url')
     this.policy     = this.$el.data('policy')
 
-    this.$file.on('change', function() {
-      _this.$image_url.val('')
-      _this.upload(this.files[0], function(location) {
-        _this.$image_url.val(location)
-      })
+    this.addToolbar()
+    this.attachEditor()
+  }
+
+  Editor.prototype.addToolbar = function() {
+    template = JST['active_admin/editor/templates/toolbar']({
+      id: this.$el.attr('id') + '-toolbar'
     })
 
-    this.attachEditor()
+    this.$toolbar = $(template)
+
+    if (config.uploads_enabled) {
+      this.handleUploads('insertImage')
+      this.handleUploads('createLink')
+    }
+
+    this.$el.find('.wrap').prepend(this.$toolbar)
+  }
+
+  Editor.prototype.handleUploads = function(dialog) {
+    $dialog = this.$toolbar.find('[data-wysihtml5-dialog="' + dialog + '"]')
+    $dialog.append(JST['active_admin/editor/templates/uploader']({ spinner: config.spinner }))
+    $dialog.each(function() {
+      $file   = $dialog.find('input:file')
+      $input  = $dialog.find('input:text')
+
+      $file.on('change', function() {
+        $input.val('')
+        _this.upload(this.files[0], function(location) {
+          $input.val(location)
+        })
+      })
+    })
   }
 
   Editor.prototype.attachEditor = function() {
