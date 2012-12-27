@@ -106,5 +106,50 @@ describe('Editor', function() {
       xhr = this.editor.upload(sinon.stub(), function() {})
       expect(xhr.send).to.have.been.called
     })
+
+    describe('form data', function() {
+      beforeEach(function() {
+        file = this.file = { name: 'foobar', type: 'image/jpg' }
+        append = this.append = sinon.stub()
+        FormData = function() { return { append: append } }
+
+        this.xhr.prototype.open = sinon.stub()
+        this.xhr.prototype.send = sinon.stub()
+
+        this.config.s3_bucket         = 'bucket'
+        this.config.storage_dir       = 'uploads'
+        this.config.aws_access_key_id = 'access key'
+
+        this.editor.upload(file, function() {})
+      })
+
+      it('sets "key"', function() {
+        expect(this.append).to.have.been.calledWith('key', 'uploads/foobar')
+      })
+
+      it('sets "AWSAccessKeyId"', function() {
+        expect(this.append).to.have.been.calledWith('AWSAccessKeyId', 'access key')
+      })
+
+      it('sets "acl"', function() {
+        expect(this.append).to.have.been.calledWith('acl', 'public-read')
+      })
+
+      it('sets "policy"', function() {
+        expect(this.append).to.have.been.calledWith('policy', 'policy document')
+      })
+
+      it('sets "signature"', function() {
+        expect(this.append).to.have.been.calledWith('signature', 'policy signature')
+      })
+
+      it('sets "Content-Type"', function() {
+        expect(this.append).to.have.been.calledWith('Content-Type', 'image/jpg')
+      })
+
+      it('sets "file"', function() {
+        expect(this.append).to.have.been.calledWith('file', this.file)
+      })
+    })
   })
 })
