@@ -21,20 +21,6 @@ Then run:
 $ rails g active_admin:editor:install
 ```
 
-## Image Uploads
-
-The editor supports uploading of images direct to s3. Add the following to an
-initializer:
-
-```ruby
-ActiveAdmin::Editor.configure do |config|
-  config.s3_bucket = '<your bucket>'
-  config.aws_access_key_id = '<your aws access key>'
-  config.aws_access_secret = '<your aws secret>'
-  # config.storage_dir = 'uploads'
-end
-```
-
 ## Usage
 
 This gem provides you with a custom formtastic input called `:html_editor` to build out an html editor.
@@ -55,7 +41,27 @@ ActiveAdmin.register Page do
 end
 ```
 
+## Image Uploads
+
+The editor supports uploading of images direct to s3. Add the following to an
+initializer:
+
+```ruby
+ActiveAdmin::Editor.configure do |config|
+  config.s3_bucket = '<your bucket>'
+  config.aws_access_key_id = '<your aws access key>'
+  config.aws_access_secret = '<your aws secret>'
+  # config.storage_dir = 'uploads'
+end
+```
+
 ## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
 ### Tests
 
