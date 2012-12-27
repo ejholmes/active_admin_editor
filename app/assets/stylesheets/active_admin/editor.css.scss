@@ -8,18 +8,20 @@
     border-radius: 0 0 3px 3px;
     width: 100%;
     height: 300px;
-    border-top: none;
+    border-top: 1px solid lighten(#C9D0D6, 10%);
 
     &:focus {
       @include box-shadow(none);
       border: 1px solid #C9D0D6;
-      border-top: none;
+      border-top: 1px solid lighten(#C9D0D6, 10%);
     }
   }
 
   .active_admin_editor_toolbar {
+    width: 100%;
+    padding: 0 10px;
     border: 1px solid #C9D0D6;
-    border-bottom-style: dashed;
+    border-bottom: none;
     border-radius: 3px 3px 0 0;
     background: #fff;
 
@@ -41,8 +43,9 @@
   }
 
   .active_admin_editor_dialog {
-    border-top: 1px dashed #C9D0D6;
-    padding: 10px;
+    border-top: 1px solid #C9D0D6;
+    padding: 10px 20px;
+    margin: 0 -10px;
 
     label {
       margin-bottom: 10px;
@@ -63,9 +66,5 @@
       margin-top: 5px;
       clear: both;
     }
-  }
-
-  iframe.wysihtml5-sandbox {
-    box-sizing: border-box !important;
   }
 }
