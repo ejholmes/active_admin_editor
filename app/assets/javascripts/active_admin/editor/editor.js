@@ -67,7 +67,7 @@
 
     var xhr = new XMLHttpRequest()
       , fd = new FormData()
-      , key = config.storage_dir + '/' + file.name
+      , key = config.storage_dir + '/' + Date.now().toString() + '-' + file.name
 
     fd.append('key', key)
     fd.append('AWSAccessKeyId', config.aws_access_key_id)

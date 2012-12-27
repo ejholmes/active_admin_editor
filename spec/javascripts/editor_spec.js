@@ -105,6 +105,8 @@ describe('Editor', function() {
         append = this.append = sinon.stub()
         FormData = function() { return { append: append } }
 
+        Date.now = function() { return { toString: function() { return '1234' } } }
+
         this.xhr.prototype.open = sinon.stub()
         this.xhr.prototype.send = sinon.stub()
 
@@ -116,7 +118,7 @@ describe('Editor', function() {
       })
 
       it('sets "key"', function() {
-        expect(this.append).to.have.been.calledWith('key', 'uploads/foobar')
+        expect(this.append).to.have.been.calledWith('key', 'uploads/1234-foobar')
       })
 
       it('sets "AWSAccessKeyId"', function() {
