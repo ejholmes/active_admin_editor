@@ -114,7 +114,11 @@
     xhr.onreadystatechange = function() {
       if (xhr.readyState != 4) { return }
       _this.uploading(false)
-      callback(xhr.getResponseHeader('Location'))
+      if (xhr.status == 204) {
+        callback(xhr.getResponseHeader('Location'))
+      } else {
+        alert('Failed to upload file. Have you configured S3 properly?')
+      }
     }
 
     xhr.open('POST', 'https://' + config.s3_bucket + '.s3.amazonaws.com', true)

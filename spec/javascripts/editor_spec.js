@@ -81,10 +81,6 @@ describe('Editor', function() {
       this.xhr.prototype.upload = { addEventListener: sinon.stub() }
     })
 
-    it('returns an XMLHttpRequest', function() {
-      expect(this.editor.upload(sinon.stub(), function() {})).to.be(XMLHttpRequest)
-    })
-
     it('opens the connection to the proper bucket', function() {
       this.xhr.prototype.open = sinon.stub()
       this.xhr.prototype.send = sinon.stub()
@@ -97,6 +93,36 @@ describe('Editor', function() {
       this.xhr.prototype.send = sinon.stub()
       xhr = this.editor.upload(sinon.stub(), function() {})
       expect(xhr.send).to.have.been.called
+    })
+
+    describe('when the upload succeeds', function() {
+      it('calls the callback with the location', function(done) {
+        this.xhr.prototype.open = sinon.stub()
+        this.xhr.prototype.send = sinon.stub()
+        this.config.s3_bucket = 'bucket'
+        xhr = this.editor.upload(sinon.stub(), function(location) {
+          expect(location).to.eq('foo')
+          done()
+        })
+        xhr.getResponseHeader = sinon.stub().returns('foo')
+        xhr.readyState = 4
+        xhr.status = 204
+        xhr.onreadystatechange()
+      })
+    })
+
+    describe('when the upload fails', function() {
+      it('shows an alert', function() {
+        this.xhr.prototype.open = sinon.stub()
+        this.xhr.prototype.send = sinon.stub()
+        this.config.s3_bucket = 'bucket'
+        alert = sinon.stub()
+        xhr = this.editor.upload(sinon.stub(), function() {})
+        xhr.readyState = 4
+        xhr.status = 403
+        xhr.onreadystatechange()
+        expect(alert).to.have.been.calledWith('Failed to upload file. Have you configured S3 properly?')
+      })
     })
 
     describe('form data', function() {
