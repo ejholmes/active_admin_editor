@@ -1,4 +1,3 @@
-//= require jquery
 //= require wysihtml5
 //= require active_admin/editor/editor
 //= require active_admin/editor/config
