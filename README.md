@@ -9,21 +9,27 @@ interface using [wysihtml5](https://github.com/xing/wysihtml5).
 
 ## Installation
 
-Add the following to your Gemfile:
+Add the following to your `Gemfile`:
 
 ```ruby
 gem 'active_admin_editor'
 ```
 
-Then run:
+And include the wysiwyg styles in your `application.css`:
+
+```css
+//= require active_admin/editor/wysiwyg
+```
+
+Then run the following to install the default intializer:
 
 ```bash
-$ rails g active_admin:editor:install
+$ rails g active_admin:editor
 ```
 
 ## Usage
 
-This gem provides you with a custom formtastic input called `:html_editor` to build out an html editor.
+This gem provides you with a custom formtastic input called `:html_editor` to build out an wysihtml5 enabled input.
 All you have to do is specify the `:as` option for your inputs.
 
 **Example**
