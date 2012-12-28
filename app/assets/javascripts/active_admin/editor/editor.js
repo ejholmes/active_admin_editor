@@ -5,7 +5,7 @@
 
   var Editor = function(el, _config) {
     config          = _config
-    _this           = this
+    var _this       = this
     this.$el        = $(el)
     this.$textarea  = this.$el.find('textarea')
     this.policy     = this.$el.data('policy')
@@ -15,34 +15,36 @@
   }
 
   Editor.prototype.addToolbar = function() {
-    template = JST['active_admin/editor/templates/toolbar']({
+    var template = JST['active_admin/editor/templates/toolbar']({
       id: this.$el.attr('id') + '-toolbar'
     })
 
     this.$toolbar = $(template)
 
     if (config.uploads_enabled) {
-      this.handleUploads(this.$toolbar.find('input.uploadable'))
+      var _this = this
+      this.$toolbar.find('input.uploadable').each(function() {
+        _this.addUploader(this)
+      })
     }
 
     this.$el.find('.wrap').prepend(this.$toolbar)
   }
 
-  Editor.prototype.handleUploads = function(inputs) {
-    $(inputs).each(function() {
-      $this = $(this)
+  Editor.prototype.addUploader = function(input) {
+    var $input = $(input)
 
-      template = JST['active_admin/editor/templates/uploader']({ spinner: config.spinner })
-      $uploader = $(template)
+    var template = JST['active_admin/editor/templates/uploader']({ spinner: config.spinner })
+    var $uploader = $(template)
 
-      $dialog = $this.closest('[data-wysihtml5-dialog]')
-      $dialog.append($uploader)
+    var $dialog = $input.closest('[data-wysihtml5-dialog]')
+    $dialog.append($uploader)
 
-      $uploader.find('input:file').on('change', function() {
-        $this.val('')
-        _this.upload(this.files[0], function(location) {
-          $this.val(location)
-        })
+    var _this = this
+    $uploader.find('input:file').on('change', function() {
+      $input.val('')
+      _this.upload(this.files[0], function(location) {
+        $input.val(location)
       })
     })
   }
@@ -62,7 +64,7 @@
   }
 
   Editor.prototype.upload = function(file, callback) {
-    _this = this
+    var _this = this
     _this.uploading(true)
 
     var xhr = new XMLHttpRequest()
