@@ -14,6 +14,10 @@
     this.attachEditor()
   }
 
+  /**
+   * Adds the wysihtml5 toolbar. If uploads are enabled, also adds the
+   * necessary file inputs for uploading.
+   */
   Editor.prototype.addToolbar = function() {
     var template = JST['active_admin/editor/templates/toolbar']({
       id: this.$el.attr('id') + '-toolbar'
@@ -31,6 +35,12 @@
     this.$el.find('.wrap').prepend(this.$toolbar)
   }
 
+  /**
+   * Adds a file input attached to the supplied text input. And upload is
+   * triggered if the source of the input is changed.
+   *
+   * @input Text input to attach a file input to. 
+   */
   Editor.prototype.addUploader = function(input) {
     var $input = $(input)
 
@@ -49,6 +59,9 @@
     })
   }
 
+  /**
+   * Initializes the wysihtml5 editor for the textarea.
+   */
   Editor.prototype.attachEditor = function() {
     this.editor = new wysihtml5.Editor(this.$textarea.attr('id'), {
       toolbar: this.$toolbar.attr('id'),
@@ -57,12 +70,25 @@
     })
   }
 
+  /**
+   * Sets the internal uploading state to true or false. Adds the .uploading
+   * class to the root element for stying.
+   *
+   * @uploading {Boolean} Whether or not something is being uploaded.
+   */
   Editor.prototype.uploading = function(uploading) {
     this._uploading = uploading
     this.$el.toggleClass('uploading', this._uploading)
     return this._uploading
   }
 
+  /**
+   * Uploads a file to S3. When the upload is complete, calls callback with the
+   * location of the uploaded file.
+   *
+   * @file The file to upload
+   * @callback A function to be called when the upload completes.
+   */
   Editor.prototype.upload = function(file, callback) {
     var _this = this
     _this.uploading(true)
