@@ -44,7 +44,7 @@ module ActiveAdmin
         { :expiration => Time.now.utc + 1.hour,
           :conditions => [
             { :bucket => bucket },
-            [ 'starts-with', '$key', '' ],
+            [ 'starts-with', '$key', storage_dir ],
             { :acl => 'public-read' },
             [ 'starts-with', '$Content-Type', '' ],
             [ 'content-length-range', 0, 524288000 ]
@@ -60,6 +60,10 @@ module ActiveAdmin
           secret,
           document
         )
+      end
+
+      def storage_dir
+        configuration.storage_dir + '/'
       end
 
       def bucket

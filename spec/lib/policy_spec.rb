@@ -10,6 +10,7 @@ describe ActiveAdmin::Editor::Policy do
   describe '.document' do
     before do
       configuration.should_receive(:s3_bucket).and_return('bucket')
+      configuration.should_receive(:storage_dir).and_return('uploads')
     end
 
     it 'base64 encodes the content' do
@@ -26,6 +27,7 @@ describe ActiveAdmin::Editor::Policy do
   describe '.signature' do
     before do
       configuration.should_receive(:s3_bucket).and_return('bucket')
+      configuration.should_receive(:storage_dir).and_return('uploads')
       configuration.should_receive(:aws_access_secret).and_return('secret')
     end
 
