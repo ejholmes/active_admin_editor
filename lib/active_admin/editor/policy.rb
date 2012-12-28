@@ -43,7 +43,7 @@ module ActiveAdmin
       def document_hash
         { :expiration => Time.now.utc + 1.hour,
           :conditions => [
-            { :bucket => configuration.s3_bucket },
+            { :bucket => bucket },
             [ 'starts-with', '$key', '' ],
             { :acl => 'public-read' },
             [ 'starts-with', '$Content-Type', '' ],
@@ -57,9 +57,17 @@ module ActiveAdmin
       def digest
         OpenSSL::HMAC.digest(
           OpenSSL::Digest::Digest.new('sha1'),
-          configuration.aws_access_secret,
+          secret,
           document
         )
+      end
+
+      def bucket
+        configuration.s3_bucket
+      end
+
+      def secret
+        configuration.aws_access_secret
       end
 
       def configuration
