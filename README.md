@@ -47,10 +47,10 @@ ActiveAdmin.register Page do
 end
 ```
 
-## Image Uploads
+## Uploads
 
-The editor supports uploading of images direct to s3. Add the following to an
-initializer:
+The editor supports uploading of assets directly to an S3 bucket. Edit the initializer that
+was installed when you ran `rails g active_admin:editor`.
 
 ```ruby
 ActiveAdmin::Editor.configure do |config|
@@ -89,5 +89,5 @@ Then add the following CORS configuration to the S3 bucket:
 
 ### Tests
 
-Runy RSpec tests with `bundle exec rake`. Run JavaScript specs with `bundle
+Run RSpec tests with `bundle exec rake`. Run JavaScript specs with `bundle
 exec rake konacha:serve`.
