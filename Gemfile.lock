@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    active_admin_editor (0.3.6)
+    active_admin_editor (1.0.0)
       ejs
       rails (>= 3.0.0)
 
