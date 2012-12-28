@@ -29,7 +29,7 @@ $ rails g active_admin:editor
 
 ## Usage
 
-This gem provides you with a custom formtastic input called `:html_editor` to build out an wysihtml5 enabled input.
+This gem provides you with a custom formtastic input called `:html_editor` to build out a wysihtml5 enabled input.
 All you have to do is specify the `:as` option for your inputs.
 
 **Example**
