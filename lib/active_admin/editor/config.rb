@@ -24,6 +24,10 @@ module ActiveAdmin
         @storage_dir ||= 'uploads'
       end
 
+      def storage_dir=(dir)
+        @storage_dir = dir.to_s.gsub(/(^\/|\/$)/, '')
+      end
+
       def s3_configured?
         aws_access_key_id.present? &&
           aws_access_secret.present? &&
