@@ -1,6 +1,14 @@
-//= require active_admin/editor/wysihtml5.min
-//= require active_admin/editor/wysihtml5/parser_rules
-//= require active_admin/editor/fileuploader
-//= require active_admin/editor/jquery.paginate.min
-//= require active_admin/editor/core
-//= require active_admin/editor/quicksave
+//= require wysihtml5
+//= require active_admin/editor/editor
+//= require active_admin/editor/config
+//= require active_admin/editor/parser_rules
+
+(function(window, document, $) {
+  window.AA.editors = []
+
+  $(function() {
+    $('.html_editor').each(function() {
+      window.AA.editors.push(new Editor(this, window.AA.editor))
+    })
+  })
+})(window, document, jQuery)

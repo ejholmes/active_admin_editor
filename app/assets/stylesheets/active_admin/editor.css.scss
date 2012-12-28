@@ -1,219 +1,80 @@
 @import 'active_admin/mixins';
-@import 'active_admin/editor/wysiwyg';
 
-.active_admin_editor {
+.html_editor {
+  .wrap {
     width: 76%;
     float: left;
+  }
 
-    textarea {
-        width: 100%;
-        font-family: Georgia;
-        font-size: 1.3em;
-        height: 700px;
-        line-height: 1.5em;
+  &.uploading .spinner {
+    display: inline;
+  }
+
+  .spinner {
+    display: none;
+  }
+
+  textarea {
+    border-radius: 0 0 3px 3px;
+    width: 100%;
+    height: 300px;
+    border-top: 1px solid lighten(#C9D0D6, 10%);
+
+    &:focus {
+      @include box-shadow(none);
+      border: 1px solid #C9D0D6;
+      border-top: 1px solid lighten(#C9D0D6, 10%);
+    }
+  }
+
+  .toolbar {
+    width: 100%;
+    padding: 0 10px;
+    border: 1px solid #C9D0D6;
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+    background: #fff;
+
+    ul li {
+      display: inline-block;
     }
 
-    .active_admin_editor_toolbar {
-        position: relative;
-        margin-bottom: 8px;
+    ul li a {
+      display: block;
+      padding: 5px 10px;
+      text-decoration: none;
 
-        /* Formatting Buttons */
-        [data-wysihtml5-command],
-        [data-wysihtml5-action="change_view"] {
-          text-decoration: none;
-          background: #fff;
-          color: #000;
-          padding: 4px 6px;
-          margin: 0 2px 2px 0;
-          border: 1px solid #C9D0D6;
-          border-radius: 4px;
-
-          &.wysihtml5-command-active {
-            @include gradient(#eee, #f9f9f9);
-          }
-        }
-
-        &.wysihtml5-commands-disabled [data-wysihtml5-command] {
-          opacity: 0.5;
-        }
-
-        &.wysihtml5-commands-disabled [data-wysihtml5-action="change_view"] {
-          @include gradient(#eee, #f9f9f9);
-        }
-
-        [data-wysihtml5-command="bold"] {
-          font-weight: bold;
-        }
-
-        [data-wysihtml5-command="italic"] {
-          font-style: italic;
-        }
-
-        [data-wysihtml5-command="createLink"] span {
-          border-bottom: 1px solid #38678B;
-        }
-
-        /* Dialog Window */
-        [data-wysihtml5-dialog] {
-            position: absolute;
-            top: 35px;
-            left: 10px;
-            width: 600px;
-            background: #fff;
-            padding: 20px;
-            border: 1px solid #c9d0d6;
-
-            -moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            border-radius: 3px;
-
-            -moz-box-shadow: 0 0 5px #ccc;
-            -webkit-box-shadow: 0 0 5px #ccc;
-            box-shadow: 0 0 5px #ccc;
-
-            label {
-                display: block;
-                margin: 10px 0;
-
-                & + label {
-                  clear: both;
-                }
-            }
-
-            input {
-                width: 400px;
-                border: 1px solid #c9d0d6;
-                -webkit-border-radius: 3px;
-                -moz-border-radius: 3px;
-                border-radius: 3px;
-                font-size: 0.95em;
-                font-family: Helvetica, Arial, sans-serif;
-                outline: none;
-                padding: 8px 10px 7px;
-            }
-
-            .asset_scale_selection {
-              clear: both;
-              @include clearfix;
-
-              label {
-                clear: none;
-                display: block;
-                float: left;
-                width: auto;
-                margin-right: 20px;
-
-                input {
-                  width: auto;
-                }
-              }
-
-              & + label {
-                clear: both;
-              }
-            }
-
-            #asset_uploader {
-              margin-top: 27px;
-              float: right;
-            }
-
-            .assets_container {
-              clear: both;
-              @include clearfix;
-              margin: 10px 0;
-              padding: 20px 0;
-
-              .asset {
-                float: left;
-                margin: 5px;
-                line-height: 0;
-                width: 110px;
-                height: 126px;
-                text-align: center;
-
-                &.active {
-                  img {
-                    border-color: #999;
-                  }
-                }
-
-                img {
-                  cursor: pointer;
-                  border: 3px solid #ddd;
-                }
-              }
-
-              a.upload {
-                display: block;
-                float: right;
-                margin-right: 20px;
-              }
-
-              .page_navigation {
-                clear: both;
-                float: right;
-
-                & > span {
-                  display: inline-block;
-                  margin: 0 3px;
-
-                  &.active {
-                    font-weight: bold;
-                  }
-                }
-              }
-            }
-
-            .action-group {
-                padding-top: 20px;
-                clear: both;
-            }
-
-            [data-wysihtml5-dialog-action] {
-                cursor: pointer;
-            }
-        }
-
-        .button.quicksave {
-            float: right;
-            margin-top: -5px;
-            margin-right: -20px;
-            position: relative;
-            top: -5px;
-        }
+      &.wysihtml5-command-active,
+      &.wysihtml5-action-active,
+      &.wysihtml5-command-dialog-opened {
+        text-decoration: underline;
+      }
     }
+  }
+
+  .dialog {
+    border-top: 1px solid lighten(#C9D0D6, 10%);
+    padding: 10px 20px;
+    margin: 0 -10px;
+
+    label {
+      margin-bottom: 10px;
+      width: 300px;
+
+      input {
+        display: block;
+      }
+
+      select {
+        display: block;
+      }
+    }
+
+    .action-group {
+      display: block;
+      float: right;
+      margin-top: 5px;
+      clear: both;
+    }
+  }
 }
-
-// AJAX Uploader
-.qq-uploader { position:relative; width: 100%; clear: both;}
-
-.qq-upload-button {
-    display:block; /* or inline-block */
-    width: 105px; padding: 7px 0; text-align:center;    
-    background:#880000; border-bottom:1px solid #ddd;color:#fff;
-}
-.qq-upload-button-hover {background:#cc0000;}
-.qq-upload-button-focus {outline:1px dotted black;}
-
-.qq-upload-drop-area {
-    position:absolute; top:0; left:0; width:100%; height:100%; min-height: 70px; z-index:2;
-    background:#FF9797; text-align:center; 
-}
-.qq-upload-drop-area span {
-    display:block; position:absolute; top: 50%; width:100%; margin-top:-8px; font-size:16px;
-}
-.qq-upload-drop-area-active {background:#FF7171;}
-
-.qq-upload-list {display: none;margin:15px 35px; padding:0; list-style:disc;}
-.qq-upload-list li { margin:0; padding:0; line-height:15px; font-size:12px;}
-.qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text {
-    margin-right: 7px;
-}
-
-.qq-upload-file {}
-.qq-upload-spinner {display:inline-block; background: url("loading.gif"); width:15px; height:15px; vertical-align:text-bottom;}
-.qq-upload-size,.qq-upload-cancel {font-size:11px;}
-
-.qq-upload-failed-text {display:none;}
-.qq-upload-fail .qq-upload-failed-text {display:inline;}

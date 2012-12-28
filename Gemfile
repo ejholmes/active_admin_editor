@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source :rubygems
 
 # Declare your gem's dependencies in active_admin_editor.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -10,14 +10,16 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'activeadmin'
+gem 'konacha'
 
 # jquery-rails is used by the dummy application
-gem "jquery-rails"
+gem 'jquery-rails'
+gem 'chai-jquery-rails'
+gem 'sinon-chai-rails'
+gem 'sinon-rails'
+gem 'ejs'
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'capybara'
-  gem 'factory_girl_rails'
 end
 
 # Declare any dependencies that are still in development here instead of in
