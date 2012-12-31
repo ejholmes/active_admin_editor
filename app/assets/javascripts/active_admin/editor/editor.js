@@ -52,10 +52,13 @@
 
     var _this = this
     $uploader.find('input:file').on('change', function() {
-      $input.val('')
-      _this.upload(this.files[0], function(location) {
-        $input.val(location)
-      })
+      var file = this.files[0]
+      if (file) {
+        $input.val('')
+        _this.upload(file, function(location) {
+          $input.val(location)
+        })
+      }
     })
   }
 
