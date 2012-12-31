@@ -17,7 +17,7 @@ gem 'active_admin_editor'
 
 And include the wysiwyg styles in your `application.css`:
 
-```css
+```scss
 //= require active_admin/editor/wysiwyg
 ```
 
