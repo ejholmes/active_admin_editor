@@ -1,12 +1,12 @@
 (function(window, document) {
   window.AA = (window.AA || {})
-  window.AA.editor = (window.AA.editor || {})
+  var config = window.AA.editor = (window.AA.editor || {})
 
   <% %w(aws_access_key_id s3_bucket storage_dir).each do |option| %>
-  window.AA.editor.<%= option %> = '<%= ActiveAdmin::Editor.configuration.send(option.to_sym) %>'
+  config.<%= option %> = '<%= ActiveAdmin::Editor.configuration.send(option.to_sym) %>'
   <% end %>
 
-  window.AA.editor.stylesheets = '<%= asset_path 'active_admin/editor/wysiwyg.css' %>'
-  window.AA.editor.spinner = '<%= asset_path 'active_admin/editor/loader.gif' %>'
-  window.AA.editor.uploads_enabled = <%= ActiveAdmin::Editor.configuration.s3_configured? %>
+  config.stylesheets = '<%= asset_path 'active_admin/editor/wysiwyg.css' %>'
+  config.spinner = '<%= asset_path 'active_admin/editor/loader.gif' %>'
+  config.uploads_enabled = <%= ActiveAdmin::Editor.configuration.s3_configured? %>
 })(window, document)
