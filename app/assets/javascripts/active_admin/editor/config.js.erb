@@ -2,7 +2,7 @@
   window.AA = (window.AA || {})
   window.AA.editor = (window.AA.editor || {})
 
-  <% %w(aws_access_key_id aws_access_secret s3_bucket storage_dir).each do |option| %>
+  <% %w(aws_access_key_id s3_bucket storage_dir).each do |option| %>
   window.AA.editor.<%= option %> = '<%= ActiveAdmin::Editor.configuration.send(option.to_sym) %>'
   <% end %>
 
