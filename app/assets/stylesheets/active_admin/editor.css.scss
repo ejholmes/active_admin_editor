@@ -43,12 +43,18 @@ body form .html_editor {
       display: block;
       padding: 5px 10px;
       text-decoration: none;
+      color: #999;
 
       &.wysihtml5-command-active,
       &.wysihtml5-action-active,
       &.wysihtml5-command-dialog-opened {
         text-decoration: underline;
+        color: #38678B;
       }
+    }
+
+    &.wysihtml5-commands-disabled ul li a[data-wysihtml5-command] {
+      display: none;
     }
   }
 
