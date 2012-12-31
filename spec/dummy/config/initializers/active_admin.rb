@@ -126,4 +126,8 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
+
+  config.editor.s3_bucket = ENV['S3_BUCKET']
+  config.editor.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
+  config.editor.aws_access_secret = ENV['AWS_ACCESS_SECRET']
 end
