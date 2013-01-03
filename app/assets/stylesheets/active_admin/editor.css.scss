@@ -36,10 +36,6 @@ body form .html_editor {
     @include rounded-top;
     background: #fff;
 
-    ul li {
-      display: inline-block;
-    }
-
     ul li a {
       display: block;
       padding: 5px 10px;
@@ -51,6 +47,14 @@ body form .html_editor {
       &.wysihtml5-command-dialog-opened {
         text-decoration: underline;
         color: $link-color;
+      }
+    }
+
+    ul li {
+      display: inline-block;
+
+      &:first-child a {
+        padding-left: 0;
       }
     }
 
