@@ -79,6 +79,21 @@ Then add the following CORS configuration to the S3 bucket:
 </CORSConfiguration>
 ```
 
+## Configuration
+
+You can configure the editor in the initializer installed with `rails g
+active_admin:editor` or you can configure the editor during
+`ActiveAdmin.setup`:
+
+```ruby
+ActiveAdmin.setup do |config|
+  # ...
+  config.editor.aws_access_key_id = '<your aws access key>'
+  config.editor.s3_bucket = 'bucket'
+  config.editor.stylesheets << 'custom_wysiwyg_styles.css'
+end
+```
+
 ## Contributing
 
 1. Fork it
