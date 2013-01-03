@@ -15,9 +15,15 @@ module ActiveAdmin
     end
 
     class Configuration
+      # AWS credentials
       attr_accessor :aws_access_key_id
       attr_accessor :aws_access_secret
+
+      # The s3 bucket to store uploads.
       attr_accessor :s3_bucket
+
+      # Base directory to store the uploaded files in the bucket. Defaults to
+      # 'uploads'.
       attr_accessor :storage_dir
 
       # wysiwyg stylesheets that get included in the backend and the frontend.
