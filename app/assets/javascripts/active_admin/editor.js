@@ -8,7 +8,7 @@
 
   $(function() {
     $('.html_editor').each(function() {
-      window.AA.editors.push(new window.AA.Editor(this, window.AA.editor))
+      window.AA.editors.push(new window.AA.Editor(this, window.AA.editor_config))
     })
   })
 })(window, document, jQuery)

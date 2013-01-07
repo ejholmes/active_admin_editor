@@ -35,7 +35,7 @@
 
 (function(window, document) {
   window.AA = (window.AA || {})
-  window.AA.editor = (window.AA.editor || {})
+  window.AA.editor_config = (window.AA.editor_config || {})
 
   var parserRules = {
       /**
@@ -556,5 +556,5 @@
       }
   };
 
-  window.AA.editor.parserRules = parserRules
+  window.AA.editor_config.parserRules = parserRules
 })(window, document)
