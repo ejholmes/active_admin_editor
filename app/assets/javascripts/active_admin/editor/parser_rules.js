@@ -33,7 +33,7 @@
  *    <div class="wysiwyg-text-align-center">hello</div>
  */
 
-(function(window, document) {
+;(function(window) {
   window.AA = (window.AA || {})
   window.AA.editor_config = (window.AA.editor_config || {})
 
@@ -557,4 +557,4 @@
   };
 
   window.AA.editor_config.parserRules = parserRules
-})(window, document)
+})(window)

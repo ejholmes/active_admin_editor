@@ -1,4 +1,4 @@
-(function(window, document) {
+;(function(window) {
   window.AA = (window.AA || {})
   var config = window.AA.editor_config = (window.AA.editor_config || {})
 
@@ -9,4 +9,4 @@
   config.stylesheets = <%= ActiveAdmin::Editor.configuration.stylesheets.map { |stylesheet| asset_path stylesheet }.to_json %>
   config.spinner = '<%= asset_path 'active_admin/editor/loader.gif' %>'
   config.uploads_enabled = <%= ActiveAdmin::Editor.configuration.s3_configured? %>
-})(window, document)
+})(window)

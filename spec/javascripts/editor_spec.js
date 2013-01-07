@@ -7,7 +7,7 @@ describe('Editor', function() {
     this.xhr = sinon.useFakeXMLHttpRequest()
     $('body').append(JST['templates/editor']())
     this.config = sinon.stub()
-    this.editor = new window.AA.Editor($('.html_editor')[0], this.config)
+    this.editor = new window.AA.Editor(this.config, $('.html_editor'))
   })
 
   afterEach(function() {
@@ -38,10 +38,16 @@ describe('Editor', function() {
     expect(wysihtml5.Editor).to.have.been.calledWith('page_content')
   })
 
-  describe('.uploading', function() {
+  describe('.editor', function() {
+    it('returns the wysihtml5 editor', function() {
+      expect(this.editor.editor()).to.eq(this.editor._editor)
+    })
+  })
+
+  describe('._uploading', function() {
     describe('when set to true', function() {
       beforeEach(function() {
-        this.uploading = this.editor.uploading(true)
+        this.uploading = this.editor._uploading(true)
       })
 
       it('returns true', function() {
@@ -49,7 +55,7 @@ describe('Editor', function() {
       })
 
       it('sets ._uploading', function() {
-        expect(this.editor._uploading).to.be.true
+        expect(this.editor.__uploading).to.be.true
       })
 
       it('adds the .uploading class', function() {
@@ -59,7 +65,7 @@ describe('Editor', function() {
 
     describe('when set to false', function() {
       beforeEach(function() {
-        this.uploading = this.editor.uploading(false)
+        this.uploading = this.editor._uploading(false)
       })
 
       it('returns false', function() {
@@ -67,7 +73,7 @@ describe('Editor', function() {
       })
 
       it('sets ._uploading', function() {
-        expect(this.editor._uploading).to.be.false
+        expect(this.editor.__uploading).to.be.false
       })
 
       it('adds the .uploading class', function() {

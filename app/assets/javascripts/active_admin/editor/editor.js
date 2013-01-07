@@ -1,26 +1,32 @@
 //= require_tree ./templates
 
-(function(window, document, wysihtml5) {
+;(function(window, wysihtml5) {
   window.AA = (window.AA || {})
   var config
 
-  var Editor = function(el, options) {
+  var Editor = function(options, el) {
     config          = options
     var _this       = this
-    this.el         = el
-    this.$el        = $(this.el)
+    this.$el        = $(el)
     this.$textarea  = this.$el.find('textarea')
     this.policy     = this.$el.data('policy')
 
-    this.addToolbar()
-    this.attachEditor()
+    this._addToolbar()
+    this._attachEditor()
+  }
+
+  /**
+   * Returns the wysihtml5 editor instance for this editor.
+   */
+  Editor.prototype.editor = function() {
+    return this._editor
   }
 
   /**
    * Adds the wysihtml5 toolbar. If uploads are enabled, also adds the
    * necessary file inputs for uploading.
    */
-  Editor.prototype.addToolbar = function() {
+  Editor.prototype._addToolbar = function() {
     var template = JST['active_admin/editor/templates/toolbar']({
       id: this.$el.attr('id') + '-toolbar'
     })
@@ -30,7 +36,7 @@
     if (config.uploads_enabled) {
       var _this = this
       this.$toolbar.find('input.uploadable').each(function() {
-        _this.addUploader(this)
+        _this._addUploader(this)
       })
     }
 
@@ -43,7 +49,7 @@
    *
    * @input Text input to attach a file input to. 
    */
-  Editor.prototype.addUploader = function(input) {
+  Editor.prototype._addUploader = function(input) {
     var $input = $(input)
 
     var template = JST['active_admin/editor/templates/uploader']({ spinner: config.spinner })
@@ -67,13 +73,12 @@
   /**
    * Initializes the wysihtml5 editor for the textarea.
    */
-  Editor.prototype.attachEditor = function() {
-    this.editor = new wysihtml5.Editor(this.$textarea.attr('id'), {
+  Editor.prototype._attachEditor = function() {
+    this._editor = new wysihtml5.Editor(this.$textarea.attr('id'), {
       toolbar: this.$toolbar.attr('id'),
       stylesheets: config.stylesheets,
       parserRules: config.parserRules
     })
-    this.el.editor = this.editor
   }
 
   /**
@@ -82,10 +87,10 @@
    *
    * @uploading {Boolean} Whether or not something is being uploaded.
    */
-  Editor.prototype.uploading = function(uploading) {
-    this._uploading = uploading
-    this.$el.toggleClass('uploading', this._uploading)
-    return this._uploading
+  Editor.prototype._uploading = function(uploading) {
+    this.__uploading = uploading
+    this.$el.toggleClass('uploading', this.__uploading)
+    return this.__uploading
   }
 
   /**
@@ -97,7 +102,7 @@
    */
   Editor.prototype.upload = function(file, callback) {
     var _this = this
-    _this.uploading(true)
+    _this._uploading(true)
 
     var xhr = new XMLHttpRequest()
       , fd = new FormData()
@@ -119,7 +124,7 @@
 
     xhr.onreadystatechange = function() {
       if (xhr.readyState != 4) { return }
-      _this.uploading(false)
+      _this._uploading(false)
       if (xhr.status == 204) {
         callback(xhr.getResponseHeader('Location'))
       } else {
@@ -134,4 +139,10 @@
   }
 
   window.AA.Editor = Editor
-})(window, document, wysihtml5)
+})(window, wysihtml5)
+
+;(function(window, $) {
+  if ($.widget) {
+    $.widget.bridge('editor', window.AA.Editor)
+  }
+})(window, jQuery)
