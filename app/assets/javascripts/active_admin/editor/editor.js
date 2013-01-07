@@ -1,10 +1,11 @@
 //= require_tree ./templates
 
 (function(window, document, wysihtml5) {
-  var config = null
+  window.AA = (window.AA || {})
+  var config
 
-  var Editor = function(el, _config) {
-    config          = _config
+  var Editor = function(el, options) {
+    config          = options
     var _this       = this
     this.$el        = $(el)
     this.$textarea  = this.$el.find('textarea')
@@ -130,5 +131,5 @@
     return xhr
   }
 
-  window.Editor = Editor
+  window.AA.Editor = Editor
 })(window, document, wysihtml5)
