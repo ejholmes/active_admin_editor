@@ -7,7 +7,8 @@
   var Editor = function(el, options) {
     config          = options
     var _this       = this
-    this.$el        = $(el)
+    this.el         = el
+    this.$el        = $(this.el)
     this.$textarea  = this.$el.find('textarea')
     this.policy     = this.$el.data('policy')
 
@@ -72,6 +73,7 @@
       stylesheets: config.stylesheets,
       parserRules: config.parserRules
     })
+    this.el.editor = this.editor
   }
 
   /**
