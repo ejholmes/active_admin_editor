@@ -7,7 +7,7 @@ module ActiveAdmin
         def editor; ActiveAdmin::Editor.configuration end
       end
 
-      initializer 'active_admin.editor' do |app|
+      initializer 'active_admin.editor', :group => :all do |app|
         app.config.assets.precompile += [
           'active_admin/editor.js',
           'active_admin/editor.css'
