@@ -5,6 +5,6 @@ ActiveAdmin.register Page do
       f.input :content, as: :html_editor
     end
 
-    f.buttons
+    f.actions
   end
 end
