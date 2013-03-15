@@ -96,7 +96,8 @@ end
 ## Heroku
 
 Since some of the javascript files need to be compiled with access to the env
-vars, it's recommended that you add the `user-env-compile` labs feature to your app.
+vars, it's recommended that you add the [user-env-compile](https://devcenter.heroku.com/articles/labs-user-env-compile)
+labs feature to your app.
 
 1. Tell your rails app to run initializers on asset compilation
 
