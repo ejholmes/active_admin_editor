@@ -130,4 +130,7 @@ ActiveAdmin.setup do |config|
   config.editor.s3_bucket = ENV['S3_BUCKET']
   config.editor.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
   config.editor.aws_access_secret = ENV['AWS_ACCESS_SECRET']
+  config.editor.parser_rules['tags']['strike'] = {
+    'remove' => 0
+  }
 end
