@@ -89,8 +89,26 @@ ActiveAdmin.setup do |config|
   # ...
   config.editor.aws_access_key_id = '<your aws access key>'
   config.editor.s3_bucket = 'bucket'
-  config.editor.stylesheets << 'custom_wysiwyg_styles.css'
 end
+```
+
+## Parser Rules
+
+[Parser rules](https://github.com/xing/wysihtml5/tree/master/parser_rules) can
+be configured through the initializer:
+
+```ruby
+ActiveAdmin::Editor.configure do |config|
+  config.parser_rules['tags']['strike'] = {
+    'remove' => 0
+  }
+end
+```
+
+Be sure to clear your rails cache after changing the config:
+
+```bash
+rm -rf tmp/cache
 ```
 
 ## Heroku
