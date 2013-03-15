@@ -93,6 +93,23 @@ ActiveAdmin.setup do |config|
 end
 ```
 
+## Heroku
+
+Since some of the javascript files need to be compiled with access to the env
+vars, it's recommended that you add the `user-env-compile` labs feature to your app.
+
+1. Tell your rails app to run initializers on asset compilation
+
+   ```ruby
+   # config/environments/production.rb
+   config.initialize_on_compile = true
+   ```
+2. Add the labs feature
+
+   ```bash
+   heroku labs:enable user-env-compile -a myapp
+   ```
+
 ## Contributing
 
 1. Fork it
