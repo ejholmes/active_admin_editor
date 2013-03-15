@@ -46,6 +46,10 @@ module ActiveAdmin
           aws_access_secret.present? &&
           s3_bucket.present?
       end
+
+      def parser_rules
+        @parser_rules ||= PARSER_RULES.dup
+      end
     end
   end
 end
