@@ -6,6 +6,8 @@ interface using [wysihtml5](https://github.com/xing/wysihtml5).
 
 ![screenshot](https://dl.dropbox.com/u/1906634/Captured/OhvTv.png)
 
+[Demo](http://active-admin-editor-demo.herokuapp.com/admin/pages/new)
+
 ## Installation
 
 Add the following to your `Gemfile`:
