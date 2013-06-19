@@ -22,6 +22,9 @@ module ActiveAdmin
       # The s3 bucket to store uploads.
       attr_accessor :s3_bucket
 
+      # The s3 host, use 's3-eu-west-1.amazonaws.com' for Europe
+      attr_accessor :s3_host
+
       # Base directory to store the uploaded files in the bucket. Defaults to
       # 'uploads'.
       attr_accessor :storage_dir
