@@ -123,7 +123,7 @@ labs feature to your app.
 
    ```ruby
    # config/environments/production.rb
-   config.initialize_on_compile = true
+   config.initialize_on_precompile = true
    ```
 2. Add the labs feature
 
