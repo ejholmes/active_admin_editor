@@ -22,7 +22,7 @@ body form .html_editor {
     border-top: 1px solid lighten(#C9D0D6, 10%);
 
     &:focus {
-      @include box-shadow(none);
+      box-shadow: none;
       border: 1px solid #C9D0D6;
       border-top: 1px solid lighten(#C9D0D6, 10%);
     }
