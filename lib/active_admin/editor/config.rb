@@ -29,6 +29,7 @@ module ActiveAdmin
       # wysiwyg stylesheets that get included in the backend and the frontend.
       attr_accessor :stylesheets
 
+      # paths to client side templates in the asset pipeline
       attr_accessor :template_paths
 
       def storage_dir
