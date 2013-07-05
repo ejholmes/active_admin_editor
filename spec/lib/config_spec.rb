@@ -16,7 +16,7 @@ describe ActiveAdmin::Editor.configuration do
     its(:s3_bucket)         { should be_nil }
     its(:storage_dir)       { should eq 'uploads' }
   end
-  
+
   describe '.s3_configured?' do
     subject { configuration.s3_configured? }
 
@@ -26,7 +26,7 @@ describe ActiveAdmin::Editor.configuration do
 
       it { should be_false }
     end
-    
+
     context 'when key, secret and bucket are set' do
       before do
         configuration.aws_access_key_id = 'foo'
@@ -49,6 +49,32 @@ describe ActiveAdmin::Editor.configuration do
     it 'strips leading slashes' do
       configuration.storage_dir = '/uploads'
       expect(subject).to eq 'uploads'
+    end
+  end
+
+  describe '.template_paths' do
+    subject { configuration.template_paths }
+
+    it 'should have default uploader path' do
+      configuration.template_paths = { toolbar: "hallo" }
+      expect(subject[:uploader]).not_to be_nil
+    end
+
+    it 'should have default toolbar path' do
+      configuration.template_paths = { uploader: "hallo" }
+      expect(subject[:toolbar]).not_to be_nil
+    end
+
+    it 'should be possible to override options' do
+      opts = { toolbar: "toolbar", uploader: "uploader" }
+      configuration.template_paths = opts
+      expect(subject).to eq opts
+    end
+
+    it "sould be possible just to override one option" do
+      opts = { toolbar: "toolbar" }
+      configuration.template_paths = opts
+      expect(subject).to eq({ toolbar: "toolbar", uploader: "active_admin/editor/templates/uploader" })
     end
   end
 end
