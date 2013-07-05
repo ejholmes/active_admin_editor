@@ -15,6 +15,10 @@ describe ActiveAdmin::Editor.configuration do
     its(:aws_access_secret) { should be_nil }
     its(:s3_bucket)         { should be_nil }
     its(:storage_dir)       { should eq 'uploads' }
+    its(:template_paths)    { should eq({
+      toolbar: 'active_admin/editor/templates/toolbar',
+      uploader: 'active_admin/editor/templates/uploader'
+    }) }
   end
 
   describe '.s3_configured?' do
