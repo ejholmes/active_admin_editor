@@ -113,6 +113,31 @@ Be sure to clear your rails cache after changing the config:
 rm -rf tmp/cache
 ```
 
+## Custom template paths
+The toolbar and the uploader are client side templates (ejs)
+To customize these you can set custom paths your very own templates.
+__Its important that the template has a different name then (toolbar or uploader)!__
+
+```ruby
+ActiveAdmin::Editor.configure do |config|
+  config.template_paths = {
+      toolbar: 'path to my custom toolbar template',
+      uploader: 'path to my custom uploader template'
+  }
+end
+```
+__Please check the original templates for an example__
+app/assets/javascripts/active_admin/editor/templates
+
+### Make your templates available
+Unfortunately sproket can not find templates from your
+asset folder when requireing them in a gem. So you have to
+make your templates manually avaliable.
+
+```javascript
+//= require_tree ./path_to_your_templates
+```
+
 ## Heroku
 
 Since some of the javascript files need to be compiled with access to the env

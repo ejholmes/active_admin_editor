@@ -27,7 +27,7 @@
    * necessary file inputs for uploading.
    */
   Editor.prototype._addToolbar = function() {
-    var template = JST['active_admin/editor/templates/toolbar']({
+    var template = JST[config.template_paths.toolbar]({
       id: this.$el.attr('id') + '-toolbar'
     })
 
@@ -47,12 +47,12 @@
    * Adds a file input attached to the supplied text input. And upload is
    * triggered if the source of the input is changed.
    *
-   * @input Text input to attach a file input to. 
+   * @input Text input to attach a file input to.
    */
   Editor.prototype._addUploader = function(input) {
     var $input = $(input)
 
-    var template = JST['active_admin/editor/templates/uploader']({ spinner: config.spinner })
+    var template = JST[config.template_paths.uploader]({ spinner: config.spinner })
     var $uploader = $(template)
 
     var $dialog = $input.closest('[data-wysihtml5-dialog]')

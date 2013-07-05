@@ -29,6 +29,9 @@ module ActiveAdmin
       # wysiwyg stylesheets that get included in the backend and the frontend.
       attr_accessor :stylesheets
 
+      # paths to client side templates in the asset pipeline
+      attr_accessor :template_paths
+
       def storage_dir
         @storage_dir ||= 'uploads'
       end
@@ -49,6 +52,14 @@ module ActiveAdmin
 
       def parser_rules
         @parser_rules ||= PARSER_RULES.dup
+      end
+
+      def template_paths
+        defaults = {
+          toolbar: 'active_admin/editor/templates/toolbar',
+          uploader: 'active_admin/editor/templates/uploader'
+        }
+        @template_paths ? @template_paths.reverse_merge!(defaults) : defaults
       end
     end
   end

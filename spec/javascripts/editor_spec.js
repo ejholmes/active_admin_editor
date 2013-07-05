@@ -7,6 +7,10 @@ describe('Editor', function() {
     this.xhr = sinon.useFakeXMLHttpRequest()
     $('body').append(JST['templates/editor']())
     this.config = sinon.stub()
+    this.config.template_paths = {
+      toolbar: 'active_admin/editor/templates/toolbar',
+      uploader: 'active_admin/editor/templates/uploader'
+    }
     this.editor = new window.AA.Editor(this.config, $('.html_editor'))
   })
 
