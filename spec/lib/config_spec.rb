@@ -8,6 +8,10 @@ describe ActiveAdmin::Editor.configuration do
     configuration.aws_access_secret = nil
     configuration.s3_bucket = nil
     configuration.storage_dir = 'uploads'
+    configuration.template_paths = {
+      toolbar: 'active_admin/editor/templates/toolbar',
+      uploader: 'active_admin/editor/templates/uploader'
+    }
   end
 
   context 'by default' do
