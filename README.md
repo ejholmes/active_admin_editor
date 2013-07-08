@@ -80,6 +80,29 @@ Then add the following CORS configuration to the S3 bucket:
 </CORSConfiguration>
 ```
 
+## Uploads with custom uploader action
+
+You also can upload images via a own provided action. For example so you can preprocess the images. For this you have to set the uploader_action_path in the initializer. When you have set the S3 config and the uploader_action_path, the uploader_action_path will win.
+
+```ruby
+ActiveAdmin::Editor.configure do |config|
+  config.uploader_action_path = '/path/to/the/uploader'
+end
+```
+
+__pseudocode of an uploader action within active admin__
+
+```ruby
+collection_action :upload_image, :method => :post do
+  img = Uploader.new(image: params[:file])
+  img.uplaode
+
+  # IMPORTANT the image url must be set as the headers location porperty
+  render json: {location: img.remote_url} , location: img.remote_url
+end
+```
+
+
 ## Configuration
 
 You can configure the editor in the initializer installed with `rails g
