@@ -50,6 +50,10 @@ module ActiveAdmin
           s3_bucket.present?
       end
 
+      def uploads_enabled?
+        s3_configured? or @uploader_action_path.present?
+      end
+
       def parser_rules
         @parser_rules ||= PARSER_RULES.dup
       end
