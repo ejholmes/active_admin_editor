@@ -29,6 +29,9 @@ module ActiveAdmin
       # wysiwyg stylesheets that get included in the backend and the frontend.
       attr_accessor :stylesheets
 
+      # action which should handle file upload
+      attr_accessor :uploader_action_path
+
       def storage_dir
         @storage_dir ||= 'uploads'
       end
@@ -49,6 +52,10 @@ module ActiveAdmin
 
       def parser_rules
         @parser_rules ||= PARSER_RULES.dup
+      end
+
+      def uploader_action_path=(action)
+        @uploader_action_path = (action.nil?) ? action : "/#{ action.to_s.gsub(/(^\/|\/$)/, '') }"
       end
     end
   end
