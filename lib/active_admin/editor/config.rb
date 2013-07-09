@@ -41,7 +41,7 @@ module ActiveAdmin
       end
 
       def stylesheets
-        @stylesheets ||= [ 'active_admin/editor/wymiwyg.css' ]
+        @stylesheets ||= [ 'active_admin/editor/wysiwyg.css' ]
       end
 
       def s3_configured?
