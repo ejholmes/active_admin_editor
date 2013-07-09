@@ -189,7 +189,8 @@ describe('Editor', function() {
       this.xhr.prototype.send = sinon.stub()
       this.config.uploader_action_path = '/path/to/action'
       xhr = this.editor.action_upload(sinon.stub(), function() {})
-      expect(xhr.open).to.have.been.calledWith('POST', 'http://localhost:3500/path/to/action', true)
+      action_url = window.location.protocol + '//' + window.location.host + this.config.uploader_action_path
+      expect(xhr.open).to.have.been.calledWith('POST', action_url, true)
     })
 
     it('sends the request', function() {
