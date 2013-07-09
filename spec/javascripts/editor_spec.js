@@ -82,22 +82,22 @@ describe('Editor', function() {
     })
   })
 
-  describe('.upload', function() {
+  describe('.s3_upload', function() {
     beforeEach(function() {
-      this.xhr.prototype.upload = { addEventListener: sinon.stub() }
+      this.xhr.prototype.s3_upload = { addEventListener: sinon.stub() }
     })
 
     it('opens the connection to the proper bucket', function() {
       this.xhr.prototype.open = sinon.stub()
       this.xhr.prototype.send = sinon.stub()
       this.config.s3_bucket = 'bucket'
-      xhr = this.editor.upload(sinon.stub(), function() {})
+      xhr = this.editor.s3_upload(sinon.stub(), function() {})
       expect(xhr.open).to.have.been.calledWith('POST', 'https://bucket.s3.amazonaws.com', true)
     })
 
     it('sends the request', function() {
       this.xhr.prototype.send = sinon.stub()
-      xhr = this.editor.upload(sinon.stub(), function() {})
+      xhr = this.editor.s3_upload(sinon.stub(), function() {})
       expect(xhr.send).to.have.been.called
     })
 
@@ -106,7 +106,7 @@ describe('Editor', function() {
         this.xhr.prototype.open = sinon.stub()
         this.xhr.prototype.send = sinon.stub()
         this.config.s3_bucket = 'bucket'
-        xhr = this.editor.upload(sinon.stub(), function(location) {
+        xhr = this.editor.s3_upload(sinon.stub(), function(location) {
           expect(location).to.eq('foo')
           done()
         })
@@ -123,7 +123,7 @@ describe('Editor', function() {
         this.xhr.prototype.send = sinon.stub()
         this.config.s3_bucket = 'bucket'
         alert = sinon.stub()
-        xhr = this.editor.upload(sinon.stub(), function() {})
+        xhr = this.editor.s3_upload(sinon.stub(), function() {})
         xhr.readyState = 4
         xhr.status = 403
         xhr.onreadystatechange()
@@ -146,7 +146,7 @@ describe('Editor', function() {
         this.config.storage_dir       = 'uploads'
         this.config.aws_access_key_id = 'access key'
 
-        this.editor.upload(file, function() {})
+        this.editor.s3_upload(file, function() {})
       })
 
       it('sets "key"', function() {

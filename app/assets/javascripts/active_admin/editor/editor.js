@@ -172,7 +172,7 @@
     fd.append('Content-Type', file.type)
     fd.append('file', file)
 
-    xhr.upload.addEventListener('progress', function(e) {
+    xhr.s3_upload.addEventListener('progress', function(e) {
       _this.loaded   = e.loaded
       _this.total    = e.total
       _this.progress = e.loaded / e.total
