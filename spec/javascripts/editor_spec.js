@@ -84,7 +84,7 @@ describe('Editor', function() {
 
   describe('.s3_upload', function() {
     beforeEach(function() {
-      this.xhr.prototype.s3_upload = { addEventListener: sinon.stub() }
+      this.xhr.prototype.upload = { addEventListener: sinon.stub() }
     })
 
     it('opens the connection to the proper bucket', function() {
@@ -181,7 +181,7 @@ describe('Editor', function() {
 
   describe('.action_upload', function() {
     beforeEach(function() {
-      this.xhr.prototype.action_upload = { addEventListener: sinon.stub() }
+      this.xhr.prototype.upload = { addEventListener: sinon.stub() }
     })
 
     it('opens the connection to the uploader action', function() {

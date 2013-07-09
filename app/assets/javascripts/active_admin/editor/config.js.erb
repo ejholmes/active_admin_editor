@@ -10,5 +10,10 @@
   config.spinner = '<%= asset_path 'active_admin/editor/loader.gif' %>'
   config.uploads_enabled = <%= ActiveAdmin::Editor.configuration.uploads_enabled? %>
   config.parserRules = <%= ActiveAdmin::Editor.configuration.parser_rules.to_json %>
-  config.uploader_action_path = '<%= ActiveAdmin::Editor.configuration.uploader_action_path.to_s %>'
+
+  <% if path = ActiveAdmin::Editor.configuration.uploader_action_path %>
+    config.uploader_action_path = '<%= path.to_s %>'
+  <% else %>
+    config.uploader_action_path = null
+  <% end %>
 })(window)

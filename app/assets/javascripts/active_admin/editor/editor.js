@@ -125,7 +125,7 @@
     fd.append($('meta[name="csrf-param"]').attr('content'), $('meta[name="csrf-token"]').attr('content'))
     fd.append('file', file)
 
-    xhr.action_upload.addEventListener('progress', function(e) {
+    xhr.upload.addEventListener('progress', function(e) {
       _this.loaded   = e.loaded
       _this.total    = e.total
       _this.progress = e.loaded / e.total
@@ -173,7 +173,7 @@
     fd.append('Content-Type', file.type)
     fd.append('file', file)
 
-    xhr.s3_upload.addEventListener('progress', function(e) {
+    xhr.upload.addEventListener('progress', function(e) {
       _this.loaded   = e.loaded
       _this.total    = e.total
       _this.progress = e.loaded / e.total
