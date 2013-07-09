@@ -47,7 +47,7 @@
    * Adds a file input attached to the supplied text input. And upload is
    * triggered if the source of the input is changed.
    *
-   * @input Text input to attach a file input to. 
+   * @input Text input to attach a file input to.
    */
   Editor.prototype._addUploader = function(input) {
     var $input = $(input)
@@ -94,13 +94,70 @@
   }
 
   /**
+   * Uploads a file to S3 or an custom action.
+   *
+   * @file The file to upload
+   * @callback A function to be called when the upload completes.
+   */
+  Editor.prototype.upload = function(file, callback) {
+    if (config.uploader_action_path == null) {
+      return this.s3_upload(file, callback)
+    } else {
+      return this.action_upload(file, callback)
+    }
+  }
+
+  /**
+   * Uploads a file to a confured action under config.uploader_action_path.
+   * When the upload is complete, calls callback with the location of the uploaded file.
+   *
+   * @file The file to upload
+   * @callback A function to be called when the upload completes.
+   */
+  Editor.prototype.action_upload = function(file, callback) {
+    var _this = this
+    _this._uploading(true)
+
+    var xhr = new XMLHttpRequest()
+      , fd = new FormData()
+
+    fd.append('_method', 'POST')
+    fd.append($('meta[name="csrf-param"]').attr('content'), $('meta[name="csrf-token"]').attr('content'))
+    fd.append('file', file)
+
+    xhr.upload.addEventListener('progress', function(e) {
+      _this.loaded   = e.loaded
+      _this.total    = e.total
+      _this.progress = e.loaded / e.total
+    }, false)
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState != 4) { return }
+      _this._uploading(false)
+      if (xhr.status == 200) {
+        callback(xhr.getResponseHeader('Location'))
+      } else {
+        alert('Failed to upload file. Have you implemented action "' + config.uploader_action_path + '" correctly?')
+      }
+    }
+
+    action_url = window.location.protocol + '//' + window.location.host + config.uploader_action_path
+    xhr.open('POST', action_url, true)
+    xhr.send(fd)
+
+    return xhr
+  }
+
+  /**
+
+  /**
    * Uploads a file to S3. When the upload is complete, calls callback with the
    * location of the uploaded file.
    *
    * @file The file to upload
    * @callback A function to be called when the upload completes.
    */
-  Editor.prototype.upload = function(file, callback) {
+  Editor.prototype.s3_upload = function(file, callback) {
     var _this = this
     _this._uploading(true)
 
