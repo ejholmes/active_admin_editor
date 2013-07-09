@@ -122,10 +122,10 @@
       , fd = new FormData()
 
     fd.append('_method', 'POST')
-    fd.append('authenticity_token', $('meta[name="csrf-token"]').attr('content'))
+    fd.append($('meta[name="csrf-param"]').attr('content'), $('meta[name="csrf-token"]').attr('content'))
     fd.append('file', file)
 
-    xhr.upload.addEventListener('progress', function(e) {
+    xhr.action_upload.addEventListener('progress', function(e) {
       _this.loaded   = e.loaded
       _this.total    = e.total
       _this.progress = e.loaded / e.total
@@ -141,7 +141,8 @@
       }
     }
 
-    xhr.open('POST', 'http://localhost:3000' + config.uploader_action_path, true)
+    action_url = window.location.protocol + '//' + window.location.host + config.uploader_action_path
+    xhr.open('POST', action_url, true)
     xhr.send(fd)
 
     return xhr

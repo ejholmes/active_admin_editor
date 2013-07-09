@@ -178,4 +178,83 @@ describe('Editor', function() {
       })
     })
   })
+
+  describe('.action_upload', function() {
+    beforeEach(function() {
+      this.xhr.prototype.action_upload = { addEventListener: sinon.stub() }
+    })
+
+    it('opens the connection to the uploader action', function() {
+      this.xhr.prototype.open = sinon.stub()
+      this.xhr.prototype.send = sinon.stub()
+      this.config.uploader_action_path = '/path/to/action'
+      xhr = this.editor.action_upload(sinon.stub(), function() {})
+      expect(xhr.open).to.have.been.calledWith('POST', 'http://localhost:3500/path/to/action', true)
+    })
+
+    it('sends the request', function() {
+      this.xhr.prototype.send = sinon.stub()
+      xhr = this.editor.action_upload(sinon.stub(), function() {})
+      expect(xhr.send).to.have.been.called
+    })
+
+    describe('when the upload succeeds', function() {
+      it('calls the callback with the location', function(done) {
+        this.xhr.prototype.open = sinon.stub()
+        this.xhr.prototype.send = sinon.stub()
+        this.config.uploader_action_path = '/path/to/action'
+        xhr = this.editor.action_upload(sinon.stub(), function(location) {
+          expect(location).to.eq('foo')
+          done()
+        })
+        xhr.getResponseHeader = sinon.stub().returns('foo')
+        xhr.readyState = 4
+        xhr.status = 200
+        xhr.onreadystatechange()
+      })
+    })
+
+    describe('when the upload fails', function() {
+      it('shows an alert', function() {
+        this.xhr.prototype.open = sinon.stub()
+        this.xhr.prototype.send = sinon.stub()
+        this.config.uploader_action_path = '/path/to/action'
+        alert = sinon.stub()
+        xhr = this.editor.action_upload(sinon.stub(), function() {})
+        xhr.readyState = 4
+        xhr.status = 403
+        xhr.onreadystatechange()
+        expect(alert).to.have.been.calledWith('Failed to upload file. Have you implemented action "' + this.config.uploader_action_path + '" correctly?')
+      })
+    })
+
+    describe('form data', function() {
+      beforeEach(function() {
+        file = this.file = { name: 'foobar', type: 'image/jpg' }
+        append = this.append = sinon.stub()
+        FormData = function() { return { append: append } }
+
+        Date.now = function() { return { toString: function() { return '1234' } } }
+
+        this.xhr.prototype.open = sinon.stub()
+        this.xhr.prototype.send = sinon.stub()
+
+        this.config.uploader_action_path = '/path/to/action'
+
+        this.editor.action_upload(file, function() {})
+      })
+
+      it('sets "_method"', function() {
+        expect(this.append).to.have.been.calledWith('_method', 'POST')
+      })
+
+      it('sets "authenticy_token"', function() {
+        expect(this.append).to.have.been.calledWith('authenticity_token', 'aMmw0/cl9FYg9Xi/SLCcdR0PASH1QOJrlQNr9rJOQ4g=')
+      })
+
+      it('sets "file"', function() {
+        expect(this.append).to.have.been.calledWith('file', this.file)
+      })
+    })
+  })
 })
