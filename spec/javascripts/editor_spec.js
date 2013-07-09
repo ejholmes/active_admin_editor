@@ -82,6 +82,28 @@ describe('Editor', function() {
     })
   })
 
+  describe('.upload', function() {
+    it('calls s3_upload when uploader_action_path is not set', function() {
+      this.editor.s3_upload = sinon.stub()
+      this.editor.action_upload = sinon.stub()
+      this.config.s3_bucket = 'bucket'
+      this.config.uploader_action_path= null
+      xhr = this.editor.upload(sinon.stub(), function() {})
+      expect(this.editor.s3_upload).to.have.been.called
+      expect(this.editor.action_upload).not.to.have.been.called
+    })
+
+    it('calls action_upload when uploader_action_path is set', function() {
+      this.editor.s3_upload = sinon.stub()
+      this.editor.action_upload = sinon.stub()
+      this.config.s3_bucket = 'bucket'
+      this.config.uploader_action_path= '/uploader/action'
+      xhr = this.editor.upload(sinon.stub(), function() {})
+      expect(this.editor.s3_upload).not.to.have.been.called
+      expect(this.editor.action_upload).to.have.been.called
+    })
+  })
+
   describe('.s3_upload', function() {
     beforeEach(function() {
       this.xhr.prototype.upload = { addEventListener: sinon.stub() }
