@@ -101,9 +101,9 @@
    */
   Editor.prototype.upload = function(file, callback) {
     if (config.uploader_action_path == null) {
-      this.s3_upload(file, callback);
+      return this.s3_upload(file, callback)
     } else {
-      this.action_upload(file, callback);
+      return this.action_upload(file, callback)
     }
   }
 
