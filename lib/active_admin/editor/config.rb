@@ -22,12 +22,11 @@ module ActiveAdmin
       # The s3 bucket to store uploads.
       attr_accessor :s3_bucket
 
-      # Base directory to store the uploaded files in the bucket. Defaults to
-      # 'uploads'.
-      attr_accessor :storage_dir
-
       # wysiwyg stylesheets that get included in the backend and the frontend.
-      attr_accessor :stylesheets
+      attr_writer :stylesheets
+      
+      # wysihtml5 cleanUp options
+      attr_writer :clean_up
 
       def storage_dir
         @storage_dir ||= 'uploads'
@@ -39,6 +38,10 @@ module ActiveAdmin
 
       def stylesheets
         @stylesheets ||= [ 'active_admin/editor/wysiwyg.css' ]
+      end
+      
+      def clean_up
+        @clean_up.nil? ? true : !!@clean_up
       end
 
       def s3_configured?
