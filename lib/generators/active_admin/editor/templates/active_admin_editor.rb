@@ -3,4 +3,5 @@ ActiveAdmin::Editor.configure do |config|
   # config.aws_access_key_id = ''
   # config.aws_access_secret = ''
   # config.storage_dir = 'uploads'
+  # config.clean_up = false
 end
