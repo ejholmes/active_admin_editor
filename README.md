@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/ejholmes/active_admin_editor.png?branch=master)](https://travis-ci.org/ejholmes/active_admin_editor) [![Code Climate](https://codeclimate.com/github/ejholmes/active_admin_editor.png)](https://codeclimate.com/github/ejholmes/active_admin_editor)
 
 This is a wysiwyg html editor for the [Active Admin](http://activeadmin.info/)
-interface using [wysihtml5](https://github.com/xing/wysihtml5).
+interface using [wysihtml5](https://github.com/Voog/wysihtml).
 
 ![screenshot](https://dl.dropbox.com/u/1906634/Captured/OhvTv.png)
 
@@ -36,6 +36,8 @@ All you have to do is specify the `:as` option for your inputs.
 **Example**
 
 ```ruby
+# /app/admin/page.rb
+
 ActiveAdmin.register Page do
   form do |f|
     f.inputs do
@@ -54,6 +56,8 @@ The editor supports uploading of assets directly to an S3 bucket. Edit the initi
 was installed when you ran `rails g active_admin:editor`.
 
 ```ruby
+# /config/initializers/active_admin_editor.rb
+
 ActiveAdmin::Editor.configure do |config|
   config.s3_bucket = '<your bucket>'
   config.aws_access_key_id = '<your aws access key>'
@@ -62,7 +66,7 @@ ActiveAdmin::Editor.configure do |config|
 end
 ```
 
-Then add the following CORS configuration to the S3 bucket:
+Then add the following CORS configuration to the S3 bucket (`Properties > Permissions > Edit CORS Configuration`):
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -100,6 +104,7 @@ end
 be configured through the initializer:
 
 ```ruby
+# /config/initializers/active_admin_editor.rb
 ActiveAdmin::Editor.configure do |config|
   config.parser_rules['tags']['strike'] = {
     'remove' => 0
@@ -115,26 +120,30 @@ rm -rf tmp/cache
 
 ## Line Breaks
 
-You can now toggle between using `<br>` tags (`true` — default) and `<p>` tags (`false`) with:
+You can toggle between using `<br>` tags (`true` — default) and `<p>` tags (`false`) with:
 
 ```ruby
-# initializers/active_admin_editor.rb
+# /config/initializers/active_admin_editor.rb
 
 ActiveAdmin::Editor.configure do |config|
   config.use_line_breaks = false # default true
 end
 ```
 
+If set to `false`, `Return` will generate a new `<p>` tag, and `Shift + Return` will
+generate a `<br>` tag. If unset, or set to `true`, then `Return` will always
+generate a `<br>` tag.
+
 ## Heroku
 
-Since some of the javascript files need to be compiled with access to the env
+Since some of the JavaScript files need to be compiled with access to the env
 vars, it's recommended that you add the [user-env-compile](https://devcenter.heroku.com/articles/labs-user-env-compile)
 labs feature to your app.
 
 1. Tell your rails app to run initializers on asset compilation
 
    ```ruby
-   # config/environments/production.rb
+   # /config/environments/production.rb
    config.initialize_on_precompile = true
    ```
 2. Add the labs feature
