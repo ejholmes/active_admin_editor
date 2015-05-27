@@ -113,6 +113,18 @@ Be sure to clear your rails cache after changing the config:
 rm -rf tmp/cache
 ```
 
+## Line Breaks
+
+You can now toggle between using `<br>` tags (`true` — default) and `<p>` tags (`false`) with:
+
+```ruby
+# initializers/active_admin_editor.rb
+
+ActiveAdmin::Editor.configure do |config|
+  config.use_line_breaks = false # default true
+end
+```
+
 ## Heroku
 
 Since some of the javascript files need to be compiled with access to the env

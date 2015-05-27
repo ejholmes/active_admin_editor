@@ -78,12 +78,19 @@ module ActiveAdmin
       #    - add_class:        converts and deletes the given HTML4 attribute (align, clear, ...) via the given method to a css class
       #                        The following methods are implemented in wysihtml5.dom.parse:
       #                          - align_text:  converts align attribute values (right/left/center/justify) to their corresponding css class "wysiwyg-text-align-*")
-      #                            <p align="center">foo</p> ... becomes ... <p> class="wysiwyg-text-align-center">foo</p>
+      #                            <p align="center">foo</p> ... becomes ... <p class="wysiwyg-text-align-center">foo</p>
       #                          - clear_br:    converts clear attribute values left/right/all/both to their corresponding css class "wysiwyg-clear-*"
       #                            <br clear="all"> ... becomes ... <br class="wysiwyg-clear-both">
       #                          - align_img:    converts align attribute values (right/left) on <img> to their corresponding css class "wysiwyg-float-*"
-      #                          
+      #
+      #    - add_style:        converts and deletes the given HTML4 attribute (align) via the given method to a css style
+      #                        The following methods are implemented in wysihtml5.dom.parse:
+      #                          - align_text:  converts align attribute values (right/left/center) to their corresponding css style)
+      #                            <p align="center">foo</p> ... becomes ... <p style="text-align:center">foo</p>
+      #
       #    - remove:             removes the element and its content
+      #
+      #    - unwrap              removes element but leaves content
       #
       #    - rename_tag:         renames the element to the given tag
       #
@@ -96,7 +103,9 @@ module ActiveAdmin
       #                            - src:            allows something like "/foobar.jpg", "http://google.com", ...
       #                            - href:           allows something like "mailto:bert@foo.com", "http://google.com", "/foobar.jpg"
       #                            - alt:            strips unwanted characters. if the attribute is not set, then it gets set (to ensure valid and compatible HTML)
-      #                            - numbers:  ensures that the attribute only contains numeric characters
+      #                            - numbers:        ensures that the attribute only contains numeric (integer) characters (no float values or units)
+      #                            - dimension:      for with/height attributes where floating point numbrs and percentages are allowed
+      #                            - any:            allows anything to pass
       'tags' => {
         'tr' => {
           'add_class' => {
@@ -176,18 +185,19 @@ module ActiveAdmin
         },
         'a' => {
           'check_attributes' => {
+            'target' => 'any',
             'href' => 'url' # if you compiled master manually then change this from 'url' to 'href'
           },
           'set_attributes' => {
-            'target' => '_blank'
+            'rel' => 'nofollow'
           }
         },
         'img' => {
           'check_attributes' => {
-            'width' => 'numbers',
+            'width' => 'dimension',
             'alt' => 'alt',
             'src' => 'url', # if you compiled master manually then change this from 'url' to 'src'
-            'height' => 'numbers'
+            'height' => 'dimension'
           },
           'add_class' => {
             'align' => 'align_img'
@@ -208,9 +218,6 @@ module ActiveAdmin
         'u' => {},
         'bgsound' => {
           'remove' => 1
-        },
-        'sup' => {
-          'rename_tag' => 'span'
         },
         'address' => {
           'rename_tag' => 'div'
@@ -529,9 +536,7 @@ module ActiveAdmin
             'align' => 'align_text'
           }
         },
-        'sub' => {
-          'rename_tag' => 'span'
-        },
+        'sub' => {},
         'comment' => {
           'remove' => 1
         },
@@ -543,7 +548,8 @@ module ActiveAdmin
         },
         'header' => {
           'rename_tag' => 'div'
-        }
+        },
+        'sup' => {}
       }
     }
   end

@@ -1,4 +1,5 @@
-//= require wysihtml5
+//= require wysihtml
+//= require wysihtml-toolbar
 //= require active_admin/editor/config
 //= require active_admin/editor/editor
 

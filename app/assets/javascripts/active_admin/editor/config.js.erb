@@ -10,4 +10,5 @@
   config.spinner = '<%= asset_path 'active_admin/editor/loader.gif' %>'
   config.uploads_enabled = <%= ActiveAdmin::Editor.configuration.s3_configured? %>
   config.parserRules = <%= ActiveAdmin::Editor.configuration.parser_rules.to_json %>
+  config.useLineBreaks = <%= !!ActiveAdmin::Editor.configuration.use_line_breaks %>
 })(window)
