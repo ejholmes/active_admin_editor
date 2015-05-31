@@ -2,9 +2,7 @@
 [![Build Status](https://travis-ci.org/ejholmes/active_admin_editor.png?branch=master)](https://travis-ci.org/ejholmes/active_admin_editor) [![Code Climate](https://codeclimate.com/github/ejholmes/active_admin_editor.png)](https://codeclimate.com/github/ejholmes/active_admin_editor)
 
 This is a wysiwyg html editor for the [Active Admin](http://activeadmin.info/)
-interface using [wysihtml5](https://github.com/xing/wysihtml5).
-
-![screenshot](https://dl.dropbox.com/u/1906634/Captured/OhvTv.png)
+interface using [wysihtml](https://github.com/Voog/wysihtml).
 
 [Demo](http://active-admin-editor-demo.herokuapp.com/admin/pages/new)
 
@@ -36,6 +34,8 @@ All you have to do is specify the `:as` option for your inputs.
 **Example**
 
 ```ruby
+# app/admin/page.rb
+
 ActiveAdmin.register Page do
   form do |f|
     f.inputs do
@@ -54,6 +54,8 @@ The editor supports uploading of assets directly to an S3 bucket. Edit the initi
 was installed when you ran `rails g active_admin:editor`.
 
 ```ruby
+# config/initializers/active_admin_editor.rb
+
 ActiveAdmin::Editor.configure do |config|
   config.s3_bucket = '<your bucket>'
   config.aws_access_key_id = '<your aws access key>'
@@ -62,7 +64,7 @@ ActiveAdmin::Editor.configure do |config|
 end
 ```
 
-Then add the following CORS configuration to the S3 bucket:
+Then add the following CORS configuration to the S3 bucket (`Properties > Permissions > Edit CORS Configuration`):
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -96,10 +98,11 @@ end
 
 ## Parser Rules
 
-[Parser rules](https://github.com/xing/wysihtml5/tree/master/parser_rules) can
+[Parser rules](https://github.com/Voog/wysihtml/blob/master/parser_rules/advanced.js) can
 be configured through the initializer:
 
 ```ruby
+# config/initializers/active_admin_editor.rb
 ActiveAdmin::Editor.configure do |config|
   config.parser_rules['tags']['strike'] = {
     'remove' => 0
@@ -113,9 +116,27 @@ Be sure to clear your rails cache after changing the config:
 rm -rf tmp/cache
 ```
 
+## Line Breaks
+
+While in the editor, you can toggle between the default `Return` key action: `<p>` tags (`false`) and `<br>` tags (`true`):
+
+```ruby
+# config/initializers/active_admin_editor.rb
+
+ActiveAdmin::Editor.configure do |config|
+  config.use_line_breaks = false # default
+end
+```
+
+If `false`, or not set, then `Return` will generate a new `<p>` tag, and `Shift + Return` will
+generate a `<br>` tag (similar to many WYSIWYG editors). If `true`, then `Return` will always
+generate a `<br>` tag.
+
+_Note: this is the opposite default setting from [wysihtml](https://github.com/Voog/wysihtml). The reason is that while the [`useLineBreaks`](https://github.com/xing/wysihtml5/commit/9e88e5808704c93f77f8cf0123fca67dbb138e90) feature was a more recent add on the project, and expected behavior shouldn’t have changed, for this application (and personal preference) the added functionality of `<p>` + `<br>` seemed to be preferable over `<br>` only._
+
 ## Heroku
 
-Since some of the javascript files need to be compiled with access to the env
+Since some of the JavaScript files need to be compiled with access to the env
 vars, it's recommended that you add the [user-env-compile](https://devcenter.heroku.com/articles/labs-user-env-compile)
 labs feature to your app.
 

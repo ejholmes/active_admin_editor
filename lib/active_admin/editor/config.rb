@@ -29,6 +29,9 @@ module ActiveAdmin
       # wysiwyg stylesheets that get included in the backend and the frontend.
       attr_accessor :stylesheets
 
+      # Allows access to Editor.config.useLineBreaks switch
+      attr_accessor :use_line_breaks
+
       def storage_dir
         @storage_dir ||= 'uploads'
       end
@@ -49,6 +52,10 @@ module ActiveAdmin
 
       def parser_rules
         @parser_rules ||= PARSER_RULES.dup
+      end
+
+      def use_line_breaks
+        @use_line_breaks ||= false
       end
     end
   end

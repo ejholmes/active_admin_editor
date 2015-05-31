@@ -47,7 +47,7 @@
    * Adds a file input attached to the supplied text input. And upload is
    * triggered if the source of the input is changed.
    *
-   * @input Text input to attach a file input to. 
+   * @input Text input to attach a file input to.
    */
   Editor.prototype._addUploader = function(input) {
     var $input = $(input)
@@ -77,7 +77,8 @@
     this._editor = new wysihtml5.Editor(this.$textarea.attr('id'), {
       toolbar: this.$toolbar.attr('id'),
       stylesheets: config.stylesheets,
-      parserRules: config.parserRules
+      parserRules: config.parserRules,
+      useLineBreaks: config.useLineBreaks
     })
   }
 
