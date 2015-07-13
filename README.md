@@ -1,4 +1,6 @@
 # Active Admin Editor
+
+[![Join the chat at https://gitter.im/ejholmes/active_admin_editor](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ejholmes/active_admin_editor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/ejholmes/active_admin_editor.png?branch=master)](https://travis-ci.org/ejholmes/active_admin_editor) [![Code Climate](https://codeclimate.com/github/ejholmes/active_admin_editor.png)](https://codeclimate.com/github/ejholmes/active_admin_editor)
 
 This is a wysiwyg html editor for the [Active Admin](http://activeadmin.info/)
