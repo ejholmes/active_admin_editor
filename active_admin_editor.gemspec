@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'database_cleaner', '~> 0.9.1'
   s.add_development_dependency 'capybara', '~> 1.1.4'
-  s.add_development_dependency 'activeadmin', '~> 0.4.3'
   s.add_development_dependency 'poltergeist', '~> 1.0.2'
   s.add_development_dependency 'faker'
 
