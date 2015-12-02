@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 # Declare your gem's dependencies in active_admin_editor.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
