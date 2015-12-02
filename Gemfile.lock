@@ -7,7 +7,7 @@ PATH
       rails (>= 3.0.0)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.9)
       actionpack (= 3.2.9)
@@ -227,7 +227,6 @@ PLATFORMS
 
 DEPENDENCIES
   active_admin_editor!
-  activeadmin
   capybara (~> 1.1.4)
   chai-jquery-rails
   coffee-rails
@@ -246,3 +245,6 @@ DEPENDENCIES
   sinon-rails
   sqlite3
   uglifier
+
+BUNDLED WITH
+   1.10.6
