@@ -1,5 +1,11 @@
 @import 'active_admin/mixins';
 
+@mixin box-shadow($value) {
+    -webkit-box-shadow: $value;
+    -moz-box-shadow: $value;
+    box-shadow: $value;
+}
+
 body form .html_editor {
   .wrap {
     width: 76%;
